@@ -1,0 +1,139 @@
+﻿@using ResturauntViewing.Models.Models;
+@* @using System.Web.Mvc.Html; *@
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    String controllerName = "";
+    String message = "";
+    if((int)(ViewData["Message"]) == 1)
+    {
+     message = "Please enter number one.";
+         controllerName = "List";
+    }
+    if ((int)(ViewData["Message"]) == 2)
+    {
+        message = "Please enter number two.";
+         controllerName = "DoubleList";
+    }
+}
+
+@model Person;
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to List View</h1>
+   
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <ol>
+
+        
+
+   @*      using
+        <div class="row">
+            <div class="col-sm" style="display: block">
+                <label for="1">First number</label>
+                <input type="text" class="text-hide" id="1">
+            </div>
+            <div class="col-sm">
+                <label for="2">Second Number </label>
+                <input type="text" class="text-hide" id="2">
+            </div>
+            <div class="col-sm">
+                <label for="3">Third number</label>
+                <input type="text" class="text-hide" id="3">
+            </div>
+        </div>
+        @* <p>@ViewData["Message"]</p> *@
+</div>
+@ViewData["Title"]
+<div class="container">
+    <div class="text-center ">
+        <p>@message</p>
+    </div>
+    @using (Html.BeginForm("Sort", controllerName, FormMethod.Post)){ // Make it based on the viewbag from the controller
+    <div class="row justify-content-md-center ">
+       
+         @* // this was redirecting when the button was clicked I think{   *@
+            <div class="col-sm-4" >
+                @*  <label for="1">First number</label>  could put this in a for loop.  could also have a function that counts inputs to generate IDs*@
+                @for (int i = 1; i <= 6; i++)
+                {
+                    string dynamicID = "n" + i;
+                    string name = "val" + i;
+                    @if (i == 1)
+                    {
+                        <input style="width: 15%" maxlength="1" autofocus="autofocus" onfocus="NewActiveElement(this.id)" oninput="this.value=this.value.replace(/[^0-9]/g,'');focusfunc(this.id,this.value)" type="number" name=@name class="text-hide" id=@dynamicID>
+                    }
+                    else
+                    {
+                        <input style="width: 15%" maxlength="1" onfocus="NewActiveElement(newactiveEl)" oninput="this.value=this.value.replace(/[^0-9]/g,'');focusfunc(this.id,this.value)" type="number" name=@name class="text-hide" id=@dynamicID>
+                    }
+                   
+                }
+               
+
+                @* https://stackoverflow.com/questions/37270787/uncaught-syntaxerror-failed-to-execute-queryselector-on-document *@
+
+                @* <input style="width: 15%" type="number" class="text-hide" id="2">
+            <input style="width: 15%" type="number" class="text-hide" id="3">
+            <input style="width: 15%" type="number" class="text-hide" id="4">
+            <input style="width: 15%" type="number" class="text-hide" id="5">
+            <input style="width: 15%" type="number" class="text-hide" id="6"> *@
+
+                <br /> <br />
+            </div>
+            <div class="row justify-content-md-center ">
+                
+                  <button  onclick="Submit()" style="width: 20%;" type="submit">Sort the Lists</button>  
+            </div>
+            </div>
+        }
+
+  @*   <div class="container">
+        <div class=" row justify-content-md-center ">
+
+            
+                <label style="display: block" for="1">First number</label>
+            <input style="display: block" type="text" class="text-hide" id="1">
+            
+            
+                <label for="2">Second Number </label> 
+                <input type="text" class="text-hide" id="2">
+            
+            
+                <label for="3">Third number</label> 
+                <input type="text" class="text-hide" id="3">
+            
+        </div> *@
+        @* @await Component.InvokeAsync("People", 2); *@
+    
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+        alert("hello")
+        $(document).ready(function () {
+
+            function Focus() {
+                alert("hello")
+            }
+
+            alert("hello")
+            const btn = document.getElementById("button1");
+            btn.addEventListener("click", function () {
+
+
+                    })
+
+
+
+                    //     // do something
+                    //     alert('Looks like an email address!');
+                    //     event.preventDefault(); // if the
+                })
+            
+
+
+    </script>
+}
