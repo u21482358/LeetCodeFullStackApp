@@ -63,11 +63,39 @@
         var listSub = {}
         //var arr = [];
         var inputs = document.querySelectorAll('input[type=number]')
-        var arr = new Array(inputs.length).fill(null);
+        //alert(inputs.length)
+        var arr
+        var arr2
+        if (inputs.length <= 6) {
+           // alert("once") when does javascript rerun?
+             arr = new Array(inputs.length).fill(null);
+        }
+        
+        
+        if (inputs.length > 6) {
+           // alert("twice")
+           alert(inputs.length)
+            arr = new Array(inputs.length-6).fill(null);
+            arr2 = new Array(inputs.length - 6).fill(null); // or inputs
+        }
+        alert(arr2.length)
+        
         function focusfunc(id,val) { // reason is this needs to be outside document.ready 2. also dont put id 
             //alert(val)
-            var index = id.charAt(1) - 1
-            arr[index] = val;
+            // its this problem
+            var index = id.substring(1);
+            index = parseInt(index) -1;
+            //var index = id.charAt(1) - 1
+            if (index < 6) {
+                //alert("one")
+                arr[index] = val;
+              
+            } else {
+                //alert("two")
+                arr2[index - 6] = val;
+                //alert(arr2)
+            }
+           
         }
         $(document).ready(function () {
             
@@ -134,15 +162,23 @@
        
 
         function Submit() { // seems like these not available when in document ready maybe cause when initializing the elements you need function available before whole form loads
-            alert(arr[0])
+            alert(arr)
+                alert(arr2)
         //     $.ajax({ // https://stackoverflow.com/questions/5489461/pass-array-to-mvc-action-via-ajax
         //         url: "ListController/Sort",
         //         traditional: true,
         //         data: { 'arrayOfValues': arr }
         //     });
         // }
+            if (arr2) {
+                //https://stackoverflow.com/questions/61928927/how-to-send-two-arrays-as-post-request-parameters-from-ajax-to-mvc-controller-a
+                $.post('/DoubleList/Sort', $.param({ data: arr, data2: arr2 }, true), function (data) { });
+                 // Dont put controller in the name; Needs to be list in the controller to work.
+            } else {
+                $.get('/List/Sort', $.param({ data: arr }, true), function (data) { }) // Dont put controller in the name; Needs to be list in the controller to work.
+            }
             // https://stackoverflow.com/questions/5489461/pass-array-to-mvc-action-via-ajax
-            $.get('/List/Sort', $.param({ data: arr }, true), function (data) { }) // Dont put controller in the name; Needs to be list in the controller to work.
+           
         }
 
         // https://stackoverflow.com/questions/15154261/how-can-i-set-an-event-listener-to-listen-to-a-text-box-from-the-html-source-cod

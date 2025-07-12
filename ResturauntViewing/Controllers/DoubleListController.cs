@@ -8,5 +8,13 @@ namespace ResturauntViewing.Controllers
         {
             return View();
         }
+
+        public IActionResult Sort(List<int> data, List<int> data2)
+        {
+
+            //List<int> numbers = ListHelperClass.ReturnInList(fc, null);
+            //numbers.Sort();
+            return View("~/Views/Home/People.cshtml");
+        }
     }
 }
