@@ -83,32 +83,43 @@
          
            
 
-            function NewActiveElement(id) {
+        })
+
+           function NewActiveElement(id,val) {
                 // remove then add....
-                var activeEl = document.querySelector("#n" + count).focus();
+               // alert(id)
+              // alert(val)
+            if (!val) {
+                return;
+            }
+
+               var index = id.substring(1);
+            index = parseInt(index) + 1;
+               //alert(index);
+                var activeEl = document.querySelector("#n" + index).focus();
                 //inactiveEl.removeEventListener()
-                alert(newActiveEl)
+               // alert(newActiveEl)
                 activeEl.focus();
                 // changed onkeypress to onkeyup that works
                 // declare variables outside in order to watch them.
                 var eval;
-                activeEl.onkeyup = function (e) { // event listener added to the DOM independent of the variable https://stackoverflow.com/questions/44006915/overwriting-variables-after-adding-event-listener
-                  //  alert("Key Press")
-                     eval = e.key;
+                // activeEl.onkeyup = function (e) { // event listener added to the DOM independent of the variable https://stackoverflow.com/questions/44006915/overwriting-variables-after-adding-event-listener
+                //   //  alert("Key Press")
+                //      eval = e.key;
                     
-                    //arr.splice(e.id, 0, e.val)
-                    //e.preventDefault(); // https://stackoverflow.com/questions/44930159/how-do-i-refocus-on-an-input-field-after-tabbing-past-the-last-one
-                    count++;
-                   activeEl = document.querySelector("#n" + count);
-                    //activeEl.focus();
-                    NewActiveElement(activeEl)
-                };
+                //     //arr.splice(e.id, 0, e.val)
+                //     //e.preventDefault(); // https://stackoverflow.com/questions/44930159/how-do-i-refocus-on-an-input-field-after-tabbing-past-the-last-one
+                //     count++;
+                //    activeEl = document.querySelector("#n" + count);
+                //     //activeEl.focus();
+                //     NewActiveElement(activeEl)
+                // };
                 
             }
-            if(activeEl ){
-                //alert("If statement")
-                NewActiveElement(activeEl)
-            }
+            // if(activeEl ){
+            //     //alert("If statement")
+            //     NewActiveElement(activeEl)
+            // }
           
             
 
@@ -120,7 +131,7 @@
             // btn.addEventListener("click", function () {
         
             // })
-        });
+       
 
         function Submit() { // seems like these not available when in document ready maybe cause when initializing the elements you need function available before whole form loads
             alert(arr[0])

@@ -62,11 +62,11 @@
                     string name = "val" + i;
                     @if (i == 1)
                     {
-                        <input style="width: 15%" maxlength="1" autofocus="autofocus" onfocus="NewActiveElement(this.id)" oninput="this.value=this.value.replace(/[^0-9]/g,'');focusfunc(this.id,this.value)" type="number" name=@name class="text-hide" id=@dynamicID>
+                        <input style="width: 15%" maxlength="1" autofocus="autofocus" onkeyup="NewActiveElement(this.id,this.value)" oninput="this.value=this.value.replace(/[^0-9]/g,'');focusfunc(this.id,this.value)" type="number" name=@name class="text-hide" id=@dynamicID>
                     }
                     else
                     {
-                        <input style="width: 15%" maxlength="1" onfocus="NewActiveElement(newactiveEl)" oninput="this.value=this.value.replace(/[^0-9]/g,'');focusfunc(this.id,this.value)" type="number" name=@name class="text-hide" id=@dynamicID>
+                        <input style="width: 15%" maxlength="1" onkeyup="NewActiveElement(this.id,this.value)" oninput="this.value=this.value.replace(/[^0-9]/g,'');focusfunc(this.id,this.value)" type="number" name=@name class="text-hide" id=@dynamicID>
                     }
                    
                 }
