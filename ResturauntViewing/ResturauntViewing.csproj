@@ -7,7 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Home\SampleList.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Home\SampleList.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Home\SampleList.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\SampleList.cshtml" />
   </ItemGroup>
 
 </Project>
