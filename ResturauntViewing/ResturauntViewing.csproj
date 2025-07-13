@@ -6,25 +6,25 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Content Remove="Views\Home\SampleList.cshtml" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.18" />
   </ItemGroup>
 
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Home\SampleList.cshtml" />
-  </ItemGroup>
+  <!--<ItemGroup>
+    <UpToDateCheckInput Remove="Views\Home\SampleList.cshtml" /> https://stackoverflow.com/questions/75808380/invalidoperationexception-the-view-index-was-not-found-the-following-locatio
+  </ItemGroup>-->
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <_ContentIncludedByDefault Remove="Views\Home\SampleList.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Views\Home\SampleList.cshtml" />
-  </ItemGroup>
+  </ItemGroup>-->
 
 </Project>

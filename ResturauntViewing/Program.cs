@@ -3,7 +3,7 @@ using ResturauntViewing.Models.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation(); // https://stackoverflow.com/questions/75808380/invalidoperationexception-the-view-index-was-not-found-the-following-locatio
+//builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation(); // https://stackoverflow.com/questions/75808380/invalidoperationexception-the-view-index-was-not-found-the-following-locatio
 
 var app = builder.Build();
 
