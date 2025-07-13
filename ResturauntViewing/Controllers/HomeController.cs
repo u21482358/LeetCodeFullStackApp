@@ -51,7 +51,11 @@ namespace ResturauntViewing.Controllers
 
         public IActionResult SampleList(int? val)
         {
-            return View("~/Views/Home/SampleList.cshtml");
+
+           
+
+           
+            return ViewComponent("SampleList");
            
         }
 
