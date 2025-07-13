@@ -51,7 +51,8 @@ namespace ResturauntViewing.Controllers
 
         public IActionResult SampleList(int? val)
         {
-            return View();
+            return View("~/Views/Home/SampleList.cshtml");
+           
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
