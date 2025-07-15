@@ -61,7 +61,7 @@
 
     <script type="text/javascript">
         var count = 1; // perform op on number then cast back to string
-        var checkedList = []
+        var objList = []
         var listSub = {}
         var sortedIndex
         var unsortedIndex
@@ -76,8 +76,17 @@
         }
 
         function StoreList(myList,index){
+        //     var arr = []
+        //   var object = {
+        //       index : myList
            
-            alert(myList);
+        // }
+
+        // arr.push(object)
+        // if(arr.length == 2){
+        //  var output = arr.shift()
+            
+       // }
         }
         
         
@@ -90,7 +99,7 @@
         //alert(arr2.length)
 
         function SubmitSample(){
-            if(!unsortedIndex){
+            if(objList.length == 2){
                alert("error: select unsorted list")
             }else if(!sortedIndex){
                $.get('/List/Sort', $.param({ data:  arr}, true), function (data) { })
@@ -100,19 +109,28 @@
             }
             }
 
-            function checkboxChange(checkbox){
+            function checkboxChange(checkbox,inList){
                 alert('arrived')
                 if(checkbox.checked == true){
-                    if(checkedList.length == 2){
-                       var output = checkedList.shift()             // https://stackoverflow.com/questions/34622414/fifo-behavior-for-array-pop-in-javascript
-                      var uncheckedBox = document.querySelector("#"+output)
+                    if(objList.length == 2){
+                       var output = objList.shift()             // https://stackoverflow.com/questions/34622414/fifo-behavior-for-array-pop-in-javascript
+                      var uncheckedBox = document.querySelector("#"+output.id)
                       uncheckedBox.checked = false;
                     }
-                    checkedList.push(checkbox.id)
+                    var object = {
+                        "list": inList,
+                         "id": checkbox.id
+                    }
+                    objList.push(object)
+                }else{
+                    var index = objList.findIndex(e => e.id == checkbox.id)
+                     objList.splice(index, 1);
+                   //var output = objList.remove  // need to have else to remove element from array.
                 }
-                alert(checkedList)
+                //alert(checkedList)
             }
-        
+
+              
         
         function focusfunc(id,val) { // reason is this needs to be outside document.ready 2. also dont put id 
             //alert(val)
