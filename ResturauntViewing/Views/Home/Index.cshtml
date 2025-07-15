@@ -100,13 +100,12 @@
         //alert(arr2.length)
 
         function SubmitSample(){
-            if(objList.length == 2){
+             if(objList.length == 1){
                alert("error: select unsorted list")
-            }else if(!sortedIndex){
-               $.get('/List/Sort', $.param({ data:  arr}, true), function (data) { })
+               $.get('/List/Sort', $.param({ data:  objList[0].list}, true), function (data) { })
                 }
             else{ // theres both
-                 $.post('/DoubleList/Sort', $.param({ data: arr, data2: arr2 }, true), function (data) { });
+                   $.post('/DoubleList/Sort', $.param({ data: objList[0].list, data2: objList[1].list }, true), function (data) { });
             }
             }
 
