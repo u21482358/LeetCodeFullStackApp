@@ -74,6 +74,7 @@
            // alert("once") when does javascript rerun?
              arr = new Array(inputs.length).fill(null);
         }
+        
 
         function StoreList(myList,index){
         //     var arr = []
@@ -126,6 +127,16 @@
                     var index = objList.findIndex(e => e.id == checkbox.id)
                      objList.splice(index, 1);
                    //var output = objList.remove  // need to have else to remove element from array.
+                }
+                if(objList.length > 0){
+                     if(document.querySelector("#submitSample")){
+                      document.querySelector("#submitSample").disabled = false;
+                     }
+                    
+                }else{
+                     if(document.querySelector("#submitSample")){
+                       document.querySelector("#submitSample").disabled = true;
+                      }
                 }
                 //alert(checkedList)
             }
