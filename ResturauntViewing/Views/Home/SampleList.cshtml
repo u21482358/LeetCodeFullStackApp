@@ -13,6 +13,8 @@
 }
 
 
+
+
 @* /Views/Home/SampleList.cshtml *@
 
 <table class="table table-bordered table-dark table-hover" ">
@@ -22,6 +24,7 @@
         <th scope="col">Number of Elements</th>
         <th scope="col">Type of List</th>
         <th scope="col">Sample List</th>
+        <th scope="col"></th>
     </tr>
 </thead>
 <tbody>
@@ -30,13 +33,16 @@
         {
             List<int> listDisplay = list.Take(5).ToList(); // https://stackoverflow.com/questions/319973/how-to-get-first-n-elements-of-a-list-in-c
             string combinedString = string.Join(",", listDisplay.ToArray()); // https://stackoverflow.com/questions/4981390/convert-a-list-to-a-string-in-c-sharp
+            string cbId = "cb" + @count;
            @*  <a onclick="alert('hi')"> *@
-                 <tr onclick="StoreList(@JsonConvert.SerializeObject(list),@count)" id="@count"> @* https://stackoverflow.com/questions/11826936/pass-list-item-from-c-sharp-to-javascript-array *@
+                 <tr  id="@count"> @* https://stackoverflow.com/questions/11826936/pass-list-item-from-c-sharp-to-javascript-array *@
                 
                 <th scope="row">@count</th>
                 <td> @list.Count</td>
                 <td> Unordered</td>
                 <td colspan="2">@combinedString</td>
+                <td> <input type="checkbox" onchange='checkboxChange(this);' id=@cbId onclick="StoreList(@JsonConvert.SerializeObject(list),@count)" name="vehicle1" value="Bike"></td>
+               
                 
             </tr>
             @* </a> *@
@@ -44,11 +50,14 @@
             listDisplay = list.Take(5).ToList();
             combinedString = string.Join(",", listDisplay.ToArray());
             count++;
-            <tr onclick="StoreList(@JsonConvert.SerializeObject(list),@count)" id="@count">
+            cbId = "cb" + @count;
+            <tr >
                 <th scope="row">@count</th>
                 <td>@list.Count</td>
                 <td>Ordered</td>
-                <td>@combinedString</td>
+                <td colspan="2">@combinedString</td>
+
+                <td> <input type="checkbox" onchange='checkboxChange(this);' id=@cbId onclick="StoreList(@JsonConvert.SerializeObject(list),@count);" id="c" + @count></td>
             </tr>
           count++;
         } 
@@ -62,4 +71,16 @@
 
 </script>
 }
+@section Styles
+{
+    <style type="text/css">
+        input[type="radio"] {
+            -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
+            -moz-appearance: checkbox; /* Firefox */
+            -ms-appearance: checkbox; /* not currently supported */
+        }
+    </style>
+}
+
+
 

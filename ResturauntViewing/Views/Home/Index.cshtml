@@ -61,6 +61,7 @@
 
     <script type="text/javascript">
         var count = 1; // perform op on number then cast back to string
+        var checkedList = []
         var listSub = {}
         var sortedIndex
         var unsortedIndex
@@ -97,6 +98,19 @@
             else{ // theres both
                  $.post('/DoubleList/Sort', $.param({ data: arr, data2: arr2 }, true), function (data) { });
             }
+            }
+
+            function checkboxChange(checkbox){
+                alert('arrived')
+                if(checkbox.checked == true){
+                    if(checkedList.length == 2){
+                       var output = checkedList.shift()             // https://stackoverflow.com/questions/34622414/fifo-behavior-for-array-pop-in-javascript
+                      var uncheckedBox = document.querySelector("#"+output)
+                      uncheckedBox.checked = false;
+                    }
+                    checkedList.push(checkbox.id)
+                }
+                alert(checkedList)
             }
         
         
