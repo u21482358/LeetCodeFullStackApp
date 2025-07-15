@@ -26,6 +26,7 @@
     <dt class="col-sm-12">
         <button id="button1" runat="server" ClientIDMode="Static" value="1" name="val">1  List</button>
             <button type="Submit" value="2" name="val">2 Lists</button>
+            <button type="Submit" value="3" name="val">Manual</button>
            @*  @Html.TextBoxFor(model => model.price)
            <p>@Model.price</p>
            <p>@ViewData["Message"]</p> *@
@@ -43,7 +44,7 @@
         } 
     
     </ol>
-    @if ((int)ViewData["num"]>=1)
+    @if ((int)ViewData["num"] >= 1 && (int)ViewData["num"] <3)
     {
         @await Component.InvokeAsync("People",1)
     }
@@ -52,10 +53,14 @@
     {
         @await Component.InvokeAsync("People",2)
     }
+    @if ((int)ViewData["num"] == 3)
+    {
+        @await Component.InvokeAsync("SampleList")
+    }
 </div>
 @* <vc:People></vc:People> *@
 
-@await Component.InvokeAsync("SampleList");
+
        
 @section Scripts {
 
@@ -93,7 +98,7 @@
         
         if (inputs.length > 6) {
            // alert("twice")
-           alert(inputs.length)
+           //alert(inputs.length)
             arr = new Array(inputs.length-6).fill(null);
             arr2 = new Array(inputs.length - 6).fill(null); // or inputs
         }
@@ -101,7 +106,7 @@
 
         function SubmitSample(){
              if(objList.length == 1){
-               alert("error: select unsorted list")
+               //alert("error: select unsorted list")
                $.get('/List/Sort', $.param({ data:  objList[0].list}, true), function (data) { })
                 }
             else{ // theres both
@@ -110,7 +115,7 @@
             }
 
             function checkboxChange(checkbox,inList){
-                alert('arrived')
+                //alert('arrived')
                 if(checkbox.checked == true){
                     if(objList.length == 2){
                        var output = objList.shift()             // https://stackoverflow.com/questions/34622414/fifo-behavior-for-array-pop-in-javascript
