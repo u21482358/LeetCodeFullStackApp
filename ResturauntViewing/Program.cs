@@ -25,6 +25,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=SampleList}/{id?}"); // this is the default landing page in asp net.
+    pattern: "{controller=Home}/{action=Index}/{id?}"); // this is the default landing page in asp net.
 
 app.Run();

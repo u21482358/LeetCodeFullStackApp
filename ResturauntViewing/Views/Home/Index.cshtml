@@ -2,6 +2,7 @@
 @using ResturauntViewing.Models.Models;
 @using ResturauntViewing.Models.ViewComponents;
 //{using System.Web.Mvc.Html}
+
 @{
     //    ViewData["Title"] = "Home Page";
     int count = 0;
@@ -54,13 +55,15 @@
 </div>
 @* <vc:People></vc:People> *@
 
-
+@await Component.InvokeAsync("SampleList");
        
 @section Scripts {
 
     <script type="text/javascript">
         var count = 1; // perform op on number then cast back to string
         var listSub = {}
+        var sortedIndex
+        var unsortedIndex
         //var arr = [];
         var inputs = document.querySelectorAll('input[type=number]')
         //alert(inputs.length)
@@ -70,6 +73,11 @@
            // alert("once") when does javascript rerun?
              arr = new Array(inputs.length).fill(null);
         }
+
+        function StoreList(myList,index){
+           
+            alert(myList);
+        }
         
         
         if (inputs.length > 6) {
@@ -78,7 +86,19 @@
             arr = new Array(inputs.length-6).fill(null);
             arr2 = new Array(inputs.length - 6).fill(null); // or inputs
         }
-        alert(arr2.length)
+        //alert(arr2.length)
+
+        function SubmitSample(){
+            if(!unsortedIndex){
+               alert("error: select unsorted list")
+            }else if(!sortedIndex){
+               $.get('/List/Sort', $.param({ data:  arr}, true), function (data) { })
+                }
+            else{ // theres both
+                 $.post('/DoubleList/Sort', $.param({ data: arr, data2: arr2 }, true), function (data) { });
+            }
+            }
+        
         
         function focusfunc(id,val) { // reason is this needs to be outside document.ready 2. also dont put id 
             //alert(val)
@@ -120,8 +140,7 @@
             if (!val) {
                 return;
             }
-
-               var index = id.substring(1);
+            var index = id.substring(1);
             index = parseInt(index) + 1;
                //alert(index);
                 var activeEl = document.querySelector("#n" + index).focus();

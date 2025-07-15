@@ -35,9 +35,15 @@ namespace ResturauntViewing.Models.ViewComponents
                     }
                 }
 
-
+               
             }
-            return View("~/Views/Home/SampleList.cshtml");
+            List<List<int>> allLists = new List<List<int>>(); // https://stackoverflow.com/questions/12628222/creating-a-list-of-lists-in-c-sharp
+            allLists.Add(List5);
+            allLists.Add(List10);
+            allLists.Add(List25);
+            SampleListViewModel model = new SampleListViewModel();
+            model.everyList = allLists;
+            return View("~/Views/Home/SampleList.cshtml",model);
         }
     }
 }

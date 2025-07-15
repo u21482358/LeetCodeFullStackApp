@@ -1,40 +1,65 @@
-﻿@*
+﻿@using ResturauntViewing.Models.Models;
+@using System.Web.Mvc.Html;
+@using  Newtonsoft.Json
+
+@model SampleListViewModel;
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    List<int> sortedList;
+    int count = 1;
 }
-@using ResturauntViewing.Models.Models;
+
 
 @* /Views/Home/SampleList.cshtml *@
+
 <table class="table table-bordered table-dark table-hover" ">
 <thead>
     <tr>
         <th scope="col">#</th>
         <th scope="col">Number of Elements</th>
-        <th scope="col">Type Or select Type with buttons</th>
+        <th scope="col">Type of List</th>
         <th scope="col">Sample List</th>
     </tr>
 </thead>
 <tbody>
-    <tr>
-        <th scope="row">1</th>
-            <td> 5</td>
-            <td> Ordered</td>
-        <td colspan="2">Mark</td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>hi</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>hi</td>
-    </tr>
+
+         @foreach (List<int> list in Model.everyList)
+        {
+            List<int> listDisplay = list.Take(5).ToList(); // https://stackoverflow.com/questions/319973/how-to-get-first-n-elements-of-a-list-in-c
+            string combinedString = string.Join(",", listDisplay.ToArray()); // https://stackoverflow.com/questions/4981390/convert-a-list-to-a-string-in-c-sharp
+           @*  <a onclick="alert('hi')"> *@
+                 <tr onclick="StoreList(@JsonConvert.SerializeObject(list),@count)" id="@count"> @* https://stackoverflow.com/questions/11826936/pass-list-item-from-c-sharp-to-javascript-array *@
+                
+                <th scope="row">@count</th>
+                <td> @list.Count</td>
+                <td> Unordered</td>
+                <td colspan="2">@combinedString</td>
+                
+            </tr>
+            @* </a> *@
+            list.Sort();
+            listDisplay = list.Take(5).ToList();
+            combinedString = string.Join(",", listDisplay.ToArray());
+            count++;
+            <tr onclick="StoreList(@JsonConvert.SerializeObject(list),@count)" id="@count">
+                <th scope="row">@count</th>
+                <td>@list.Count</td>
+                <td>Ordered</td>
+                <td>@combinedString</td>
+            </tr>
+          count++;
+        } 
+
 </tbody>
 </table>
+@section Scripts{
+<script>
+    alert("JS")
 
+
+</script>
+}
 
