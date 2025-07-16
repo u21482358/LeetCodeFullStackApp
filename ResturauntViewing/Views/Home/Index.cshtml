@@ -44,19 +44,35 @@
         } 
     
     </ol>
+    @{
+        string btnMessage = "";
+    }
     @if ((int)ViewData["num"] >= 1 && (int)ViewData["num"] <3)
     {
+        btnMessage = "Sort one list";
         @await Component.InvokeAsync("People",1)
+        @if ((int)ViewData["num"] == 1)
+        {
+            <button onclick="Submit()">@btnMessage</button>
+            <button>Search</button>
+        }
+       
     }
     
     @if ((int)ViewData["num"] == 2)
     {
+         btnMessage = "Sort Two lists";
         @await Component.InvokeAsync("People",2)
+        <button onclick="Submit()">@btnMessage</button>
     }
     @if ((int)ViewData["num"] == 3)
     {
+        btnMessage = "Sort";
         @await Component.InvokeAsync("SampleList")
+        <button disabled="true" id="btnSearch">Search</button>
     }
+    
+    
 </div>
 @* <vc:People></vc:People> *@
 
@@ -132,17 +148,25 @@
                      objList.splice(index, 1);
                    //var output = objList.remove  // need to have else to remove element from array.
                 }
+                
                 if(objList.length > 0){
                      if(document.querySelector("#submitSample")){
                       document.querySelector("#submitSample").disabled = false;
+                       document.querySelector("#btnSearch").disabled = false;
                      }
-                    
-                }else{
+                        if(objList.length == 2){
+                             document.querySelector("#btnSearch").disabled = true;
+                          }
+
+                 }else{
                      if(document.querySelector("#submitSample")){
                        document.querySelector("#submitSample").disabled = true;
+                        
+                       
                       }
-                }
+                
                 //alert(checkedList)
+            }
             }
 
               
