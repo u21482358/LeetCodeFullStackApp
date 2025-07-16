@@ -53,18 +53,19 @@
         @await Component.InvokeAsync("People",1)
         @if ((int)ViewData["num"] == 1)
         {
-            <button onclick="Submit()">@btnMessage</button>
+            <button id="btnSort" disabled="true" onclick="Submit()">@btnMessage</button>
             <button>Search</button>
+        }
+        @if ((int)ViewData["num"] == 2)
+        {
+            btnMessage = "Sort Two lists";
+            @await Component.InvokeAsync("People", 2)
+            <button id="btnSort" disabled="true" onclick="Submit()">@btnMessage</button>
         }
        
     }
     
-    @if ((int)ViewData["num"] == 2)
-    {
-         btnMessage = "Sort Two lists";
-        @await Component.InvokeAsync("People",2)
-        <button onclick="Submit()">@btnMessage</button>
-    }
+   
     @if ((int)ViewData["num"] == 3)
     {
         btnMessage = "Sort";
@@ -95,6 +96,12 @@
            // alert("once") when does javascript rerun?
              arr = new Array(inputs.length).fill(null);
         }
+           if (inputs.length > 6) {
+            // alert("twice")
+            //alert(inputs.length)
+             arr = new Array(inputs.length-6).fill(null);
+             arr2 = new Array(inputs.length - 6).fill(null); // or inputs
+         }
         
 
         function StoreList(myList,index){
@@ -112,12 +119,7 @@
         }
         
         
-        if (inputs.length > 6) {
-           // alert("twice")
-           //alert(inputs.length)
-            arr = new Array(inputs.length-6).fill(null);
-            arr2 = new Array(inputs.length - 6).fill(null); // or inputs
-        }
+      
         //alert(arr2.length)
 
         function SubmitSample(){
@@ -174,6 +176,13 @@
         function focusfunc(id,val) { // reason is this needs to be outside document.ready 2. also dont put id 
             //alert(val)
             // its this problem
+            //alert(val.length)
+             var disabled = false;
+            var exists = true;
+           // alert(typeof(val))
+            var objwhicharray = {
+
+            }
             var index = id.substring(1);
             index = parseInt(index) -1;
             //var index = id.charAt(1) - 1
@@ -186,6 +195,32 @@
                 arr2[index - 6] = val;
                 //alert(arr2)
             }
+            //alert(arr)
+              
+              var arr1Contains = arr.some(x => x != null && x  !=''); // https://stackoverflow.com/questions/74065121/if-array-contains-different-type-elements-how-to-pick-the-same-type-elements-an
+              arr2Contains = false;
+              if(arr2){
+                    arr2Contains = arr2.some(x => x != null && x  !='');
+                    if(arr1Contains == false || arr2Contains == false){ // meaning empty
+                     disabled = true;
+                 }
+
+                
+              }else{
+                   if(arr1Contains == false){
+                       disabled = true;
+                   }
+              }
+               var btnSort = document.querySelector("#btnSort")
+               btnSort.disabled = disabled
+              
+               
+            // alert(arr.length)
+            //alert(arr2.length)
+            
+            // if((arr.length || arr2.length > 0) && !(arr.length > 0 && arr2.length > 0) ){
+            //     alert("the condition is true")
+            // }
            
         }
         $(document).ready(function () {
@@ -209,6 +244,7 @@
                // alert(id)
               // alert(val)
             if (!val) {
+                
                 return;
             }
             var index = id.substring(1);
