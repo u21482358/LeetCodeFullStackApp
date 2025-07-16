@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Constraints;
 using ResturauntViewing.Models.Models;
 using System.Diagnostics;
 
@@ -47,6 +48,29 @@ namespace ResturauntViewing.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Landing()
+        {
+            string fileName = "Leetcode.txt";
+            var lines = System.IO.File.ReadLines(fileName);
+
+            List<LeetCodeViewModel> leetcodeModels = new List<LeetCodeViewModel>();
+            foreach (var line in lines)
+            {
+                string[] leetObject = line.Split(";");
+                LeetCodeViewModel leetCodeModel = new LeetCodeViewModel();
+                leetCodeModel.Name = leetObject[0];
+                leetCodeModel.type = leetObject[1];
+                leetCodeModel.descriptionHref = leetObject[2];
+                leetcodeModels.Add(leetCodeModel);
+            }
+            // https://stackoverflow.com/questions/58206397/c-sharp-linq-group-to-a-list-inside-a-list
+           
+            var types = leetcodeModels.GroupBy(u => u.type)
+    .Select(g => g.Key).ToList();
+            ViewBag.types = types;
+            return View(leetcodeModels);
         }
 
         public IActionResult SampleList(int? val)

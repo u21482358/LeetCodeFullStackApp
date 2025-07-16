@@ -1,0 +1,2 @@
+﻿TwoSum;Lists;https://leetcode.com/problems/two-sum/description/
+TwoSum;Array;https://leetcode.com/problems/two-sum/description/
