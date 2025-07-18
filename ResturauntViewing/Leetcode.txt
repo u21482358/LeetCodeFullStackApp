@@ -1,2 +1,3 @@
-﻿TwoSum;Lists;https://leetcode.com/problems/two-sum/description/
-TwoSum;Array;https://leetcode.com/problems/two-sum/description/
+﻿Name;Type;Action;Controller;parameter;href
+TwoSum;Lists;Index;Home;1;https://leetcode.com/problems/two-sum/description/
+SortOrderedLists;DoubleList;Index;Home;1;https://leetcode.com/problems/two-sum/description/

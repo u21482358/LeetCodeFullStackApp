@@ -6,5 +6,8 @@
         public string Name;
         public string type;
         public string descriptionHref;
+        public string Controller;
+        public string Action;
+        public int ParameterValue;
     }
 }

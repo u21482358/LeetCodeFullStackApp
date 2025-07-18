@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Constraints;
 using ResturauntViewing.Models.Models;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace ResturauntViewing.Controllers
 {
@@ -53,7 +54,7 @@ namespace ResturauntViewing.Controllers
         public IActionResult Landing()
         {
             string fileName = "Leetcode.txt";
-            var lines = System.IO.File.ReadLines(fileName);
+            var lines = System.IO.File.ReadLines(fileName).Skip(1);
 
             List<LeetCodeViewModel> leetcodeModels = new List<LeetCodeViewModel>();
             foreach (var line in lines)
@@ -62,13 +63,29 @@ namespace ResturauntViewing.Controllers
                 LeetCodeViewModel leetCodeModel = new LeetCodeViewModel();
                 leetCodeModel.Name = leetObject[0];
                 leetCodeModel.type = leetObject[1];
-                leetCodeModel.descriptionHref = leetObject[2];
+                leetCodeModel.Action = leetObject[2];
+                leetCodeModel.Controller = leetObject[3];
+                leetCodeModel.ParameterValue = Int32.Parse(leetObject[4]);
+                leetCodeModel.descriptionHref = leetObject[5];
+                // Name;Type;Action;Controller;parameter;href
                 leetcodeModels.Add(leetCodeModel);
             }
             // https://stackoverflow.com/questions/58206397/c-sharp-linq-group-to-a-list-inside-a-list
-           
-            var types = leetcodeModels.GroupBy(u => u.type)
-    .Select(g => g.Key).ToList();
+
+            var types = leetcodeModels.GroupBy(u => u.type).SelectMany(group => group)
+                .Select(c => new LeetCodeViewModel { 
+                Action = c.Action,
+                Controller = c.Controller,
+                ParameterValue = c.ParameterValue,
+                type = c.type
+                
+                }).ToList(); // select many flattens the list https://stackoverflow.com/questions/958949/difference-between-select-and-selectmany
+                                                                                                  
+
+
+          
+
+            // maybe group by something different if problems in future.
             ViewBag.types = types;
             return View(leetcodeModels);
         }

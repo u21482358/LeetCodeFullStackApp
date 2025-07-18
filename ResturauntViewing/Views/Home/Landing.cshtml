@@ -12,17 +12,23 @@
 <h1 id="50" class="display-4">Welcome To Questions Page</h1>
 @* <h2>List Questions</h2> *@
      @* https://stackoverflow.com/questions/8507633/mvc-passing-grouped-data-to-view *@
-    @foreach (var inType in ViewBag.types){
-        <h3>@inType Questions</h3>
-
-        @foreach (LeetCodeViewModel member in @Model.Where(val => val.type == inType))
+    
+    @foreach (LeetCodeViewModel inType in ViewBag.types){
+        <h3>@inType.type Questions</h3>
+        @using(Html.BeginForm(inType.Action, inType.Controller, FormMethod.Post)) // this was redirecting when the button was clicked I think
         {
+          
+        @foreach (LeetCodeViewModel member in @Model.Where(val => val.type == inType.type))
+        {
+           
             <div>
-                <button onclick="window.open('@member.descriptionHref','_blank')">@member.Name</button> @* https://stackoverflow.com/questions/5141910/javascript-location-href-to-open-in-new-window-tab *@
+  <button type="submit" value=@inType.ParameterValue name="val" onclick="window.open('@member.descriptionHref','_blank')">@member.Name</button> @* https://stackoverflow.com/questions/5141910/javascript-location-href-to-open-in-new-window-tab *@
             </div>
         }
+    
+    }
     }
    
-<p>Click i for informational</p>
-    <h2>Array Questions</h2>
+<p>Click i for informational pop up images of pages later.</p>
+    @* <h2>Array Questions</h2> *@
 </div>
