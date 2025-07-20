@@ -13,7 +13,7 @@
 
 // Obisidian Link to discussing project with questions. Or maybe add it to the solution.
 }
-@model Product
+@model LeetCodeViewModel
 @addTagHelper *, ResturauntViewing
 <div class="text-center">
     <h1 id="50" class="display-4">Welcome</h1>
@@ -34,8 +34,8 @@
           
     </dt>
     <dt class="col-sm-12">
-            @Html.TextBoxFor(model => model.price)
-        <p>@Model.price</p>
+       @*      @Html.TextBoxFor(model => model.price)
+        <p>@Model.price</p> *@
         <p>@ViewData["Message"]</p>
 
 
@@ -47,31 +47,32 @@
     @{
         string btnMessage = "";
     }
-    @if ((int)ViewData["num"] >= 1 && (int)ViewData["num"] <3)
+     @if ((int)ViewData["num"] >= 1 && (int)ViewData["num"] <3)
     {
         btnMessage = "Sort one list";
         @await Component.InvokeAsync("People",1)
         @if ((int)ViewData["num"] == 1)
         {
-            <button id="btnSort" disabled="true" onclick="Submit()">@btnMessage</button>
-            <button>Search</button>
+            <button id="btnSort" value=@Model.Name disabled="true" onclick="Submit()">@Model.Name</button>
+            <button id="btnSort" onclick="window.open('@Model.DescriptionHref','_blank')" onclick="Submit()">Informational</button>
         }
         @if ((int)ViewData["num"] == 2)
         {
             btnMessage = "Sort Two lists";
             @await Component.InvokeAsync("People", 2)
-            <button id="btnSort" disabled="true" onclick="Submit()">@btnMessage</button>
+           @*  <button id="btnSort" disabled="true" onclick="Submit()">@btnMessage</button> *@
         }
        
-    }
+    } 
+  @*   @ViewBag.types. *@
     
    
-    @if ((int)ViewData["num"] == 3)
+  @*   @if ((int)ViewData["num"] == 3)
     {
         btnMessage = "Sort";
         @await Component.InvokeAsync("SampleList")
         <button disabled="true" id="btnSearch">Search</button>
-    }
+    } *@
     
     
 </div>

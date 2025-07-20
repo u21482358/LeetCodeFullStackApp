@@ -14,15 +14,16 @@
      @* https://stackoverflow.com/questions/8507633/mvc-passing-grouped-data-to-view *@
     
     @foreach (LeetCodeViewModel inType in ViewBag.types){
-        <h3>@inType.type Questions</h3>
+        <h3>@inType.Type Questions</h3>
         @using(Html.BeginForm(inType.Action, inType.Controller, FormMethod.Post)) // this was redirecting when the button was clicked I think
         {
           
-        @foreach (LeetCodeViewModel member in @Model.Where(val => val.type == inType.type))
+        @foreach (LeetCodeViewModel member in @Model.Where(val => val.Type == inType.Type))
         {
            
             <div>
-  <button type="submit" value=@inType.ParameterValue name="val" onclick="window.open('@member.descriptionHref','_blank')">@member.Name</button> @* https://stackoverflow.com/questions/5141910/javascript-location-href-to-open-in-new-window-tab *@
+   
+  <button type="submit" value=@member.Id name="val" >@member.Name</button> @* https://stackoverflow.com/questions/5141910/javascript-location-href-to-open-in-new-window-tab *@
             </div>
         }
     
@@ -32,3 +33,31 @@
 <p>Click i for informational pop up images of pages later.</p>
     @* <h2>Array Questions</h2> *@
 </div>
+@section Scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            // code in Sql Server and entity Framework
+        // https://stackoverflow.com/questions/57169852/easiest-way-to-post-2-strings-without-having-to-create-model
+        //  
+        //          fetch(url, {
+        //   method: 'POST',
+        //   body: { username: 'myusername', password: 'mypassword' },
+        //   headers:{
+        //     'Content-Type': 'application/json'
+        //   }
+        // });
+
+            //var num = inputs.length()
+
+      // alert("arrived")
+
+
+
+
+        })
+    
+    
+    </script>
+}

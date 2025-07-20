@@ -15,17 +15,16 @@ namespace ResturauntViewing.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(int? val)
+        public IActionResult Index(int val)
         { // the Action Result returns a view of the product object which needs to be initialized before its returned.
             Product pr = new Product();
             Person ps = new Person();
-            ViewData["num"] = (int)0;
-            if (val.HasValue)
-            {
-                 ViewData["num"] = (int)val;
-            }
-            //ViewData["Message"] = "Your application description page.";
-            return View(pr);
+
+            //ViewData["num"] = val2.ParameterValue;
+           var lcvm = LeetCodeViewModel.FindModel(val);
+            ViewData["Message"] = "Your application description page.";
+            ViewData["num"] = val;
+            return View(lcvm);
             var ps2 = new Product()
             {
                 Id = pr.Id,
@@ -54,30 +53,32 @@ namespace ResturauntViewing.Controllers
         public IActionResult Landing()
         {
             string fileName = "Leetcode.txt";
-            var lines = System.IO.File.ReadLines(fileName).Skip(1);
-
+            var file = System.IO.File.ReadLines(fileName).Skip(1);
             List<LeetCodeViewModel> leetcodeModels = new List<LeetCodeViewModel>();
-            foreach (var line in lines)
+            //string[] lines = file.spl
+            foreach (var line in file)
             {
                 string[] leetObject = line.Split(";");
-                LeetCodeViewModel leetCodeModel = new LeetCodeViewModel();
-                leetCodeModel.Name = leetObject[0];
-                leetCodeModel.type = leetObject[1];
-                leetCodeModel.Action = leetObject[2];
-                leetCodeModel.Controller = leetObject[3];
-                leetCodeModel.ParameterValue = Int32.Parse(leetObject[4]);
-                leetCodeModel.descriptionHref = leetObject[5];
-                // Name;Type;Action;Controller;parameter;href
-                leetcodeModels.Add(leetCodeModel);
+                LeetCodeViewModel leetCodeViewModel = new LeetCodeViewModel
+                {
+                    Id = Int32.Parse(leetObject[0]),
+                    Name = leetObject[1],
+                    Type = leetObject[2],
+                    Action = leetObject[3],
+                    Controller = leetObject[4],
+                    ParameterValue = Int32.Parse(leetObject[5]),
+                    DescriptionHref = leetObject[6],
+                };
+                leetcodeModels.Add(leetCodeViewModel);
             }
             // https://stackoverflow.com/questions/58206397/c-sharp-linq-group-to-a-list-inside-a-list
-
-            var types = leetcodeModels.GroupBy(u => u.type).SelectMany(group => group)
+            
+            var types = leetcodeModels.GroupBy(u => u.Type).SelectMany(group => group)
                 .Select(c => new LeetCodeViewModel { 
                 Action = c.Action,
                 Controller = c.Controller,
                 ParameterValue = c.ParameterValue,
-                type = c.type
+                Type = c.Type
                 
                 }).ToList(); // select many flattens the list https://stackoverflow.com/questions/958949/difference-between-select-and-selectmany
                                                                                                   
