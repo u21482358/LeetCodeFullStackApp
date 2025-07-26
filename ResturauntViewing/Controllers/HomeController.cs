@@ -91,6 +91,15 @@ namespace ResturauntViewing.Controllers
             return View(leetcodeModels);
         }
 
+        //public IActionResult LeetCodeEntry(int id)
+        //{
+        //   LeetCodeViewModel lcvm = LeetCodeViewModel.FindModel(id);
+        //    string methodName = lcvm.Name;
+
+        //    // call action with relevant name
+        //    return View("")
+        //}
+
         public IActionResult SampleList(int? val)
         {
 
