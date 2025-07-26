@@ -22,24 +22,12 @@ public class ListController : Controller
         var type = typeof(ListModel);
         var method = type.GetMethod("TwoSum");
         // https://stackoverflow.com/questions/28625632/reflection-invoking-a-method-with-listclass-parameter/28626004#28626004
-        var obj = new Object();
         object classInstance = Activator.CreateInstance(type, null);
-        object[] parameters = new object[] { data};
        var listReturn = (ReturnModel)method.Invoke(classInstance,new[] { data });
         var target = (listReturn.retModel).GetType();
         dynamic origMsg = (dynamic)Convert.ChangeType(listReturn.retModel,target );
        var check = origMsg.GetType() == typeof(List<int>);
-        //`var tsu = typeof(origMsg);
         var tyu = origMsg.GetType();
-        var origs = (listReturn.retModel).GetType();
-        var origs2 = (new List<int>{ 123}).GetType();
-        Type hfg = listReturn.returnType;
-       
-        //var srt = ()listReturn.retModel;
-        //var typesr = typeof(hfg);
-        //dynamic origMsg = (dynamic)Convert.ChangeType(obj, type);
-        //List<int> numbers = ListHelperClass.ReturnInList(fc, null);
-        //numbers.Sort();
         return View("");
     }
 }

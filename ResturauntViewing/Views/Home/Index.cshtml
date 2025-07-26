@@ -53,8 +53,8 @@
         @await Component.InvokeAsync("People",1)
         @if ((int)ViewData["num"] == 1)
         {
-            <button id="btnSort" value=@Model.Name disabled="true" onclick="Submit()">@Model.Name</button>
-            <button id="btnSort" onclick="window.open('@Model.DescriptionHref','_blank')" onclick="Submit()">Informational</button>
+            <button id="btnSort" value=@Model.Id disabled="true" onclick="Submit(this.value)">@Model.Name</button>
+            <button id="btnInformational" onclick="window.open('@Model.DescriptionHref','_blank')" onclick="Submit()">Informational</button>
         }
         @if ((int)ViewData["num"] == 2)
         {
@@ -289,7 +289,7 @@
             // })
        
 
-        function Submit() { // seems like these not available when in document ready maybe cause when initializing the elements you need function available before whole form loads
+        function Submit(questionId) { // seems like these not available when in document ready maybe cause when initializing the elements you need function available before whole form loads
             alert(arr)
                 alert(arr2)
         //     $.ajax({ // https://stackoverflow.com/questions/5489461/pass-array-to-mvc-action-via-ajax
@@ -303,7 +303,7 @@
                 $.post('/DoubleList/Sort', $.param({ data: arr, data2: arr2 }, true), function (data) { });
                  // Dont put controller in the name; Needs to be list in the controller to work.
             } else {
-                $.get('/List/Sort', $.param({ data: arr }, true), function (data) { }) // Dont put controller in the name; Needs to be list in the controller to work.
+                $.get('/List/Sort', $.param({ data: arr,id: questionId }, true), function (data) { }) // Dont put controller in the name; Needs to be list in the controller to work.
             }
             // https://stackoverflow.com/questions/5489461/pass-array-to-mvc-action-via-ajax
            
