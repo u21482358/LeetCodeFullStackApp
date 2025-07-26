@@ -20,7 +20,7 @@ public class ListController : Controller
         var lcvm = LeetCodeViewModel.FindModel(id);
         string methodName = lcvm.Name;
         var type = typeof(ListModel);
-        var method = type.GetMethod("TwoSum");
+        var method = type.GetMethod(lcvm.Name);
         // https://stackoverflow.com/questions/28625632/reflection-invoking-a-method-with-listclass-parameter/28626004#28626004
         object classInstance = Activator.CreateInstance(type, null);
        var listReturn = (ReturnModel)method.Invoke(classInstance,new[] { data });
