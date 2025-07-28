@@ -134,7 +134,7 @@
         function SubmitSample(){
              if(objList.length == 1){
                //alert("error: select unsorted list")
-               $.get('/List/Sort', $.param({ data:  objList[0].list}, true), function (data) { })
+               $.get('/List/Sort', $.param({ data:  objList[0].list,id:@Model.Id}, true), function (data) { })
                 }
             else{ // theres both
                    $.post('/DoubleList/Sort', $.param({ data: objList[0].list, data2: objList[1].list }, true), function (data) { });
