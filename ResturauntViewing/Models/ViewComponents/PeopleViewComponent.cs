@@ -12,6 +12,7 @@ namespace ResturauntViewing.Models.ViewComponents
             // Your logic for preparing data
             Person ps = new Person();
             count++;
+            ViewData["Message"] = "Your application description page.";
             if (countVal == 1)
             {
                 ViewData["Message"] = 1;

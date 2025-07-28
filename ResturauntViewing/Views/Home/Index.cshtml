@@ -57,7 +57,7 @@
         btnMessage = "Sort one list";
         @await Component.InvokeAsync("People",1)
             
-            <button id="btnInformational" onclick="window.open('@Model.DescriptionHref','_blank')" onclick="Submit()">Informational</button>
+           
         
         @if (Model.ParameterValue == 2)
         {
@@ -66,6 +66,7 @@
            @*  <button id="btnSort" disabled="true" onclick="Submit()">@btnMessage</button> *@
         }
             <button id="btnSort" value=@Model.Id disabled="true" onclick="Submit(this.value)">@Model.Name</button>
+            <button id="btnInformational" onclick="window.open('@Model.DescriptionHref','_blank')" onclick="Submit()">Informational</button>
     }
     }
     <input type="type" name="name" value="Which end point test or memo? Type it in here" />

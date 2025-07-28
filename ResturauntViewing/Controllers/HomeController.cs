@@ -60,7 +60,7 @@ namespace ResturauntViewing.Controllers
             Product pr = new Product();
             Person ps = new Person();
             //ViewData["Number"] = 2;
-            ViewData["Message"] = "Your application description page.";
+           
             // return PartialView(ps); why isnt partialview going through?
             return ViewComponent("People");
             var ps2 = new Product()
