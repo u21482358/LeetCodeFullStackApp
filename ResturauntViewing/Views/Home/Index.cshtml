@@ -52,11 +52,11 @@
         string btnMessage = "";
     }
     @if(Model.ManualEntry){
-     @if (Model.ParameterValue == 1)
+     @if (Model.ParameterValue >= 1)
     {
         btnMessage = "Sort one list";
         @await Component.InvokeAsync("People",1)
-            <button id="btnSort" value=@Model.Id disabled="true" onclick="Submit(this.value)">@Model.Name</button>
+            
             <button id="btnInformational" onclick="window.open('@Model.DescriptionHref','_blank')" onclick="Submit()">Informational</button>
         
         @if (Model.ParameterValue == 2)
@@ -65,7 +65,7 @@
             @await Component.InvokeAsync("People", 2)
            @*  <button id="btnSort" disabled="true" onclick="Submit()">@btnMessage</button> *@
         }
-       
+            <button id="btnSort" value=@Model.Id disabled="true" onclick="Submit(this.value)">@Model.Name</button>
     }
     }
     <input type="type" name="name" value="Which end point test or memo? Type it in here" />
@@ -79,7 +79,7 @@
         lcvm = Model;
         LeetCodeViewModel lcvm2 = (LeetCodeViewModel)ViewData["model"];
         @await Component.InvokeAsync("SampleList",lcvm.Id)
-        <button disabled="true" id="btnSearch">@Model.Name</button>
+        @* <button disabled="true" id="btnSearch">@Model.Name</button> *@
     }
     
     
@@ -131,7 +131,7 @@
       
         //alert(arr2.length)
 
-        function SubmitSample(){
+        function SubmitSample(){ // can handle wrong list types in backend then return a error to the front end pop up
              if(objList.length == 1){
                //alert("error: select unsorted list")
                $.get('/List/Sort', $.param({ data:  objList[0].list,id:@Model.Id}, true), function (data) { })
@@ -141,11 +141,11 @@
             }
             }
 
-            function checkboxChange(checkbox,inList){
+             function checkboxChange(checkbox,inList,parameterValue){
                 //alert('arrived')
                 if(checkbox.checked == true){
-                    if(objList.length == 2){
-                       var output = objList.shift()             // https://stackoverflow.com/questions/34622414/fifo-behavior-for-array-pop-in-javascript
+                    if(objList.length == parameterValue){
+                       var output = objList.shift() // takes the object out as well as returns the outputted object             // https://stackoverflow.com/questions/34622414/fifo-behavior-for-array-pop-in-javascript
                       var uncheckedBox = document.querySelector("#"+output.id)
                       uncheckedBox.checked = false;
                     }
@@ -154,6 +154,7 @@
                          "id": checkbox.id
                     }
                     objList.push(object)
+                      alert(objList.length)
                 }else{
                     var index = objList.findIndex(e => e.id == checkbox.id)
                      objList.splice(index, 1);
@@ -178,6 +179,7 @@
                 
                 //alert(checkedList)
             }
+           
             }
 
               

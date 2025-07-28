@@ -41,7 +41,7 @@
                 <td> @list.Count</td>
                 <td> Unordered</td>
                 <td colspan="2">@combinedString</td>
-                <td> <input type="checkbox" onchange='checkboxChange(this,@JsonConvert.SerializeObject(list),"unordered");' id=@cbId onclick="StoreList(@JsonConvert.SerializeObject(list),@count)" name="vehicle1" value="Bike"></td>
+                <td> <input type="checkbox" onchange='checkboxChange(this,@JsonConvert.SerializeObject(list),@Model.selectedProblem.ParameterValue);' id=@cbId onclick="StoreList(@JsonConvert.SerializeObject(list),@count)" name="vehicle1" value="Bike"></td>
                
                 
             </tr>
@@ -57,7 +57,7 @@
                 <td>Ordered</td>
                 <td colspan="2">@combinedString</td>
 
-                <td> <input type="checkbox" onchange='checkboxChange(this,@JsonConvert.SerializeObject(list),"ordered");' id=@cbId onclick="StoreList(@JsonConvert.SerializeObject(list),@count);" id="c" + @count></td>
+                <td> <input type="checkbox" onchange='checkboxChange(this,@JsonConvert.SerializeObject(list),@Model.selectedProblem.ParameterValue);' id=@cbId onclick="StoreList(@JsonConvert.SerializeObject(list),@count);" id="c" + @count></td>
             </tr>
           count++;
         } 
