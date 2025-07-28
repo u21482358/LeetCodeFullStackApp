@@ -9,10 +9,12 @@ namespace ResturauntViewing.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        public static LeetCodeViewModel lcvmClass;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+
         }
 
         public IActionResult Index(int val)
@@ -22,9 +24,31 @@ namespace ResturauntViewing.Controllers
 
             //ViewData["num"] = val2.ParameterValue;
            var lcvm = LeetCodeViewModel.FindModel(val);
+            lcvmClass = lcvm;
+            //if(lcvm.Type == )
+           // ViewData["type"]
             ViewData["Message"] = "Your application description page.";
-            ViewData["num"] = val;
+            ViewData["num"] = val; // this one line is incompatible.
+            ViewData["model"] = lcvm;
             return View(lcvm);
+            var ps2 = new Product()
+            {
+                Id = pr.Id,
+            };
+        }
+
+        public IActionResult ViewRender(Boolean manualEntry)
+        { // the Action Result returns a view of the product object which needs to be initialized before its returned.
+            Product pr = new Product();
+            Person ps = new Person();
+
+            //ViewData["num"] = val2.ParameterValue
+            //if(lcvm.Type == )
+           lcvmClass.ManualEntry = manualEntry;
+            ViewData["Message"] = "Your application description page.";
+            
+            
+            return View("~/Views/Home/Index.cshtml", lcvmClass);
             var ps2 = new Product()
             {
                 Id = pr.Id,

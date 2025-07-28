@@ -9,24 +9,28 @@
     int[] myArr = new int[8];
     int index = 0;
     int length = 0;
+    LeetCodeViewModel lcvm = new LeetCodeViewModel();
 
 
 // Obisidian Link to discussing project with questions. Or maybe add it to the solution.
 }
 @model LeetCodeViewModel
+
 @addTagHelper *, ResturauntViewing
 <div class="text-center">
-    <h1 id="50" class="display-4">Welcome</h1>
+       <h1 id="50" class="display-4">Welcome</h1>
 
     @* <input style="width: 15%" autofocus="autofocus" maxlength="1" runat="server" oninput="focusfunc(this.id,this.value)" type="number" name=val1 class="text-hide" id=n0>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
     <ol>
-         @using (Html.BeginForm("Index", "Home", FormMethod.Post)) // this was redirecting when the button was clicked I think
+         @using (Html.BeginForm("ViewRender", "Home", FormMethod.Post)) // this was redirecting when the button was clicked I think
         { 
+            @Model.Id
     <dt class="col-sm-12">
-        <button id="button1" runat="server" ClientIDMode="Static" value="1" name="val">1  List</button>
-            <button type="Submit" value="2" name="val">2 Lists</button>
-            <button type="Submit" value="3" name="val">Sample Lists</button>
+        @* <button id="button1" runat="server" ClientIDMode="Static" value="1" name="val">1  List</button>
+            <button type="Submit" value="2" name="val">2 Lists</button> *@
+            <button name="manualEntry" value="true">Manual Entry</button>
+            <button type="Submit" value=false name="manualEntry">Sample Lists</button>
            @*  @Html.TextBoxFor(model => model.price)
            <p>@Model.price</p>
            <p>@ViewData["Message"]</p> *@
@@ -47,33 +51,36 @@
     @{
         string btnMessage = "";
     }
-     @if ((int)ViewData["num"] >= 1 && (int)ViewData["num"] <3)
+    @if(Model.ManualEntry){
+     @if (Model.ParameterValue == 1)
     {
         btnMessage = "Sort one list";
         @await Component.InvokeAsync("People",1)
-        @if ((int)ViewData["num"] == 1)
-        {
             <button id="btnSort" value=@Model.Id disabled="true" onclick="Submit(this.value)">@Model.Name</button>
             <button id="btnInformational" onclick="window.open('@Model.DescriptionHref','_blank')" onclick="Submit()">Informational</button>
-        }
-        @if ((int)ViewData["num"] == 2)
+        
+        @if (Model.ParameterValue == 2)
         {
             btnMessage = "Sort Two lists";
             @await Component.InvokeAsync("People", 2)
            @*  <button id="btnSort" disabled="true" onclick="Submit()">@btnMessage</button> *@
         }
        
-    } 
+    }
+    }
     <input type="type" name="name" value="Which end point test or memo? Type it in here" />
-  @*   @ViewBag.types. *@
+    
     
    
-  @*   @if ((int)ViewData["num"] == 3)
+     @if (Model.ManualEntry == false)
     {
         btnMessage = "Sort";
-        @await Component.InvokeAsync("SampleList")
-        <button disabled="true" id="btnSearch">Search</button>
-    } *@
+        <p>@Model.Id</p>
+        lcvm = Model;
+        LeetCodeViewModel lcvm2 = (LeetCodeViewModel)ViewData["model"];
+        @await Component.InvokeAsync("SampleList",lcvm.Id)
+        <button disabled="true" id="btnSearch">@Model.Name</button>
+    }
     
     
 </div>

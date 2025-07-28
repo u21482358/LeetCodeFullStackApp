@@ -10,7 +10,8 @@
         public string Type;
         public string Action;
         public string Controller;
-        public int ParameterValue;
+        public int? ParameterValue;
+        public Boolean ManualEntry = true;
         public string DescriptionHref;
 
 

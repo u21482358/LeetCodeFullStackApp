@@ -5,8 +5,9 @@ namespace ResturauntViewing.Models.ViewComponents
     public class SampleListViewComponent : ViewComponent
     {
 
-        public async Task<IViewComponentResult> InvokeAsync(int countVal)
+        public async Task<IViewComponentResult> InvokeAsync(int id) // just to toggle back to the other view...
         {  // countval number of lists they want.
+            LeetCodeViewModel lcvm = LeetCodeViewModel.FindModel(id);
             List<int> List5 = new List<int>();
             List<int> List10 = new List<int>();
             List<int> List25 = new List<int>();
@@ -43,6 +44,7 @@ namespace ResturauntViewing.Models.ViewComponents
             allLists.Add(List25);
             SampleListViewModel model = new SampleListViewModel();
             model.everyList = allLists;
+            model.selectedProblem = lcvm;
             return View("~/Views/Home/SampleList.cshtml",model);
         }
     }
