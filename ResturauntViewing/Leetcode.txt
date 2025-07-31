@@ -1,4 +1,4 @@
 ﻿Id;Name;Type;Action;Controller;parameter (Number of datastructres in the question);href
 1;TwoSum;Lists;Index;Home;1;https://leetcode.com/problems/two-sum/description/
-1;TwoSumSorted;Lists;Index;Home;1;https://leetcode.com/problems/two-sum/description/
-2;SortOrderedLists;DoubleList;Index;Home;2;https://leetcode.com/problems/two-sum/description/
+2;TwoSumSorted;Lists;Index;Home;1;https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+3;SortOrderedLists;DoubleList;Index;Home;2;https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/

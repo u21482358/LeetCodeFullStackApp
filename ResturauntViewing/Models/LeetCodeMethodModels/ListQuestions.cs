@@ -65,29 +65,38 @@ namespace ResturauntViewing.Models.LeetCodeMethodModels
             return new int[] { };
         }
 
-        public object TwoSumSorted(int[] nums, int target)
+        public object TwoSumSorted(int[] nums, int target) // faster than 100 percent of algorithms for runtime
         {
-            int[] list2 = [];
-            for (int i = 0; i < nums.Length; i++) // made a mistake with the last index value.
-            {
-                for (int j = i + 1; j < nums.Length; j++)
+            int i = nums.Length - 1;
+            int j = 0;
+            while (j < nums.Length && i >= 0) {
+                if (nums[i] + nums[j] == target)
                 {
-                    if (nums[i] + nums[j] == target)
-                    {
-                        // return new int[] { nums[i], nums[j] }; // need to return like this else wont pick up data https://stackoverflow.com/questions/9818187/return-an-array-without-creating-a-variable
-                        return new int[] { i, j };
-                        //
-                    }
+                    return new int[] { j+1, i+1 };
                 }
+                if (nums[i] + nums[j] > target)
                 {
+                    // return new int[] { nums[i], nums[j] }; // need to return like this else wont pick up data https://stackoverflow.com/questions/9818187/return-an-array-without-creating-a-variable
+                    i--;
+                    //
+                }
+                else if (nums[i] + nums[j] < target)
+                {
+                    j++;
+                }
 
-                }
+
+
+
             }
 
-            return list2;
+            return new int[] { };
+            }
+
+          
         }
 
 
 
     }
-}
+
