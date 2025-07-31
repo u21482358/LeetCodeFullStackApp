@@ -96,22 +96,28 @@
         var objList = []
         var listSub = {}
         var sortedIndex
+        var targ
         var unsortedIndex
         //var arr = [];
         var inputs = document.querySelectorAll('input[type=number]')
         //alert(inputs.length)
         var arr
         var arr2
-        if (inputs.length <= 6) {
+         var inputsLength = inputs.length - 1 // THIS IS FOR THE TARGET INPUT
+        if (inputsLength <= 6) {
            // alert("once") when does javascript rerun?
              arr = new Array(inputs.length).fill(null);
         }
-           if (inputs.length > 6) {
+           if (inputsLength > 6) {
             // alert("twice")
             //alert(inputs.length)
              arr = new Array(inputs.length-6).fill(null);
              arr2 = new Array(inputs.length - 6).fill(null); // or inputs
          }
+
+          function AssignTargetValue(value){
+            targ=value
+          }
         
 
         function StoreList(myList,index){
@@ -135,7 +141,7 @@
         function SubmitSample(){ // can handle wrong list types in backend then return a error to the front end pop up
              if(objList.length == 1){
                //alert("error: select unsorted list")
-               $.get('/List/Sort', $.param({ data:  objList[0].list,id:@Model.Id}, true), function (data) { })
+               $.get('/List/Sort', $.param({ data:  objList[0].list,id:@Model.Id,target:targ}, true), function (data) { })
                 }
             else{ // theres both
                    $.post('/DoubleList/Sort', $.param({ data: objList[0].list, data2: objList[1].list }, true), function (data) { });
@@ -313,7 +319,9 @@
                 $.post('/DoubleList/Sort', $.param({ data: arr, data2: arr2 }, true), function (data) { });
                  // Dont put controller in the name; Needs to be list in the controller to work.
             } else {
-                $.get('/List/Sort', $.param({ data: arr,id: questionId }, true), function (data) { }) // Dont put controller in the name; Needs to be list in the controller to work.
+                $.get('/List/Sort', $.param({ data: arr,id: questionId,target:targ }, true), function (data) { 
+                alert(data)
+                }) // Dont put controller in the name; Needs to be list in the controller to work.
             }
             // https://stackoverflow.com/questions/5489461/pass-array-to-mvc-action-via-ajax
            
