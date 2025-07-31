@@ -96,19 +96,21 @@ namespace ResturauntViewing.Controllers
                 leetcodeModels.Add(leetCodeViewModel);
             }
             // https://stackoverflow.com/questions/58206397/c-sharp-linq-group-to-a-list-inside-a-list
+
+            //var types = leetcodeModels.GroupBy(u => u.Type).SelectMany(group => group)
+            //    .Select(c => new LeetCodeViewModel
+            //    {
+            //        Action = c.Action,
+            //        Controller = c.Controller,
+            //        ParameterValue = c.ParameterValue,
+            //        Type = c.Type
+
+            //    }).ToList(); // select many flattens the list https://stackoverflow.com/questions/958949/difference-between-select-and-selectmany
+            //var types2 = leetcodeModels.GroupBy(u => u.Type).SelectMany(c => new LeetCodeViewModel { Action = c.Action, Type = c.Type });
             
-            var types = leetcodeModels.GroupBy(u => u.Type).SelectMany(group => group)
-                .Select(c => new LeetCodeViewModel { 
-                Action = c.Action,
-                Controller = c.Controller,
-                ParameterValue = c.ParameterValue,
-                Type = c.Type
-                
-                }).ToList(); // select many flattens the list https://stackoverflow.com/questions/958949/difference-between-select-and-selectmany
-                                                                                                  
+            var distinctTypes = leetcodeModels.Select(c => c.Type).Distinct().ToList();
 
-
-          
+           var types = leetcodeModels.GroupBy(p => p.Type).Select(p => p.First()).ToList(); // https://stackoverflow.com/questions/60973853/how-can-i-do-group-by-an-property-and-get-first-record-from-any-groups-with-lamb
 
             // maybe group by something different if problems in future.
             ViewBag.types = types;
