@@ -27,17 +27,17 @@ namespace ResturauntViewing.Models.LeetCodeMethodModels
 
             return list2;
         }
-        public object TwoSum(int[] list1, int target)
+        public object TwoSum(int[] nums, int target)
         {
             int[] list2 = [];
-            for (int i = 0; i < list1.Length - 1; i++)
+            for (int i = 0; i < nums.Length; i++) // made a mistake with the last index value.
             {
-                for (int j = i + 1; j < list1.Length - 1; j++)
+                for (int j = i + 1; j < nums.Length; j++)
                 {
-                    if (list1[i] + list1[j] == target)
+                    if (nums[i] + nums[j] == target)
                     {
-                        return new int[] { list1[i], list1[j] }; // need to return like this else wont pick up data https://stackoverflow.com/questions/9818187/return-an-array-without-creating-a-variable
-
+                        // return new int[] { nums[i], nums[j] }; // need to return like this else wont pick up data https://stackoverflow.com/questions/9818187/return-an-array-without-creating-a-variable
+                        return new int[] { i,j };
                         //
                     }
                 }
@@ -48,5 +48,46 @@ namespace ResturauntViewing.Models.LeetCodeMethodModels
 
             return list2;
         }
+
+        public int[] TwoSumSolution(int[] nums, int target) // https://leetcode.com/problems/two-sum/solutions/127810/two-sum/
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (nums[j] == target - nums[i])
+                    {
+                        return new int[] { i, j };
+                    }
+                }
+            }
+            // Return an empty array if no solution is found
+            return new int[] { };
+        }
+
+        public object TwoSumSorted(int[] nums, int target)
+        {
+            int[] list2 = [];
+            for (int i = 0; i < nums.Length; i++) // made a mistake with the last index value.
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (nums[i] + nums[j] == target)
+                    {
+                        // return new int[] { nums[i], nums[j] }; // need to return like this else wont pick up data https://stackoverflow.com/questions/9818187/return-an-array-without-creating-a-variable
+                        return new int[] { i, j };
+                        //
+                    }
+                }
+                {
+
+                }
+            }
+
+            return list2;
+        }
+
+
+
     }
 }
