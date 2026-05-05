@@ -1,0 +1,36 @@
+{
+  "templateMetadata": {
+    "id": "ffe8ce9b-6290-4738-9b9f-3a295b079bb2",
+    "name": "New Threat Model Duplicate",
+    "description": "Duplicate threat model",
+    "tags": [],
+    "modelRef": "ce5ab6e8-a6b5-4551-8683-d93846c9a51e"
+  },
+  "model": {
+    "version": "2.6.1",
+    "summary": {
+      "title": "New Threat Model Duplicate",
+      "owner": "",
+      "description": "Duplicate threat model",
+      "id": ""
+    },
+    "detail": {
+      "contributors": [],
+      "diagrams": [
+        {
+          "id": 0,
+          "title": "New STRIDE diagram Duplicate",
+          "diagramType": "STRIDE",
+          "placeholder": "New STRIDE diagram description",
+          "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+          "version": "2.6.1",
+          "cells": [],
+          "description": " Duplicate"
+        }
+      ],
+      "diagramTop": 1,
+      "reviewer": "",
+      "threatTop": 0
+    }
+  }
+}
