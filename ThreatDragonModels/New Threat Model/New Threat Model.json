@@ -309,7 +309,7 @@
           },
           {
             "position": {
-              "x": 642,
+              "x": 610,
               "y": 264
             },
             "size": {
@@ -318,7 +318,7 @@
             },
             "attrs": {
               "text": {
-                "text": "API"
+                "text": "UI API  "
               },
               "body": {
                 "stroke": "red",
@@ -413,7 +413,7 @@
             "id": "ab96b527-6751-44cf-9487-af648a7f6369",
             "data": {
               "type": "tm.Process",
-              "name": "API ",
+              "name": "UI API   ",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -1611,8 +1611,8 @@
           },
           {
             "position": {
-              "x": 940,
-              "y": 149
+              "x": 1160,
+              "y": 264
             },
             "size": {
               "width": 120,
@@ -1620,7 +1620,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Config S3"
+                "text": "Config and remediation S3 "
               },
               "topLine": {
                 "stroke": "red",
@@ -1721,7 +1721,7 @@
             "zIndex": 15,
             "data": {
               "type": "tm.Store",
-              "name": "Config S3 ",
+              "name": "Config and remediation  S3 ",
               "description": "Stores Config and Remediation",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -1917,6 +1917,200 @@
               "threats": []
             },
             "zIndex": 16
+          },
+          {
+            "position": {
+              "x": 820,
+              "y": 139
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "External API inngestion"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "49ef115c-33cd-4f6d-9c09-54de3184f986"
+                },
+                {
+                  "group": "right",
+                  "id": "bd91aaf9-c895-4cd5-bc78-e6f59de6576d"
+                },
+                {
+                  "group": "bottom",
+                  "id": "4b9e5923-74fd-4d6f-88c0-634fbb0672d8"
+                },
+                {
+                  "group": "left",
+                  "id": "87dab243-05d7-491b-93f2-76a17e886699"
+                }
+              ]
+            },
+            "id": "d9ebb173-b84f-4770-9159-ae4dd456d467",
+            "zIndex": 17,
+            "data": {
+              "type": "tm.Process",
+              "name": "External API ingestion",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "74af022e-4380-44cf-9e04-0f61a7f264d2",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "External systems may be impersonated.",
+                  "mitigation": "Secure authentication through TLS and restricted network routing (configured by end-user ensure only trusted endpoints are used",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
+                },
+                {
+                  "id": "708222af-e3fe-4867-9569-6f50ef743b00",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Data may be altered in transit.",
+                  "mitigation": "End-to-end TLS encryption with certificate validation is enforced.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": ""
+                },
+                {
+                  "id": "4e60c4c9-8002-4eb8-b521-34ea20421577",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "Sensitive data may be exposed during transmission.",
+                  "mitigation": "All communication is secured using HTTPS encryption.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": ""
+                },
+                {
+                  "id": "6629eb8e-9cb1-4295-a5e2-dce2c5008171",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Sensitive data may be exposed during transmission.",
+                  "mitigation": "All communication is secured using HTTPS encryption.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": ""
+                },
+                {
+                  "id": "ae288e1d-c756-4adb-82c7-d4e5c337dbe0",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "External API endpoints may become unavailable.",
+                  "mitigation": "Monitoring and alerting systems are in place with escalation procedures for failures. Email users when API endpoints are no longer accessible",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 0
+              }
+            }
           }
         ],
         "description": "New stride diagram"
@@ -1924,6 +2118,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "Michael",
-    "threatTop": 21
+    "threatTop": 26
   }
 }
