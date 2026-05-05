@@ -464,148 +464,6 @@
           },
           {
             "position": {
-              "x": 820,
-              "y": 264
-            },
-            "size": {
-              "width": 60,
-              "height": 60
-            },
-            "attrs": {
-              "text": {
-                "text": "Pipeline Trigger"
-              },
-              "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "strokeDasharray": null
-              }
-            },
-            "visible": true,
-            "shape": "process",
-            "ports": {
-              "groups": {
-                "top": {
-                  "position": "top",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "right": {
-                  "position": "right",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "bottom": {
-                  "position": "bottom",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "left": {
-                  "position": "left",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                }
-              },
-              "items": [
-                {
-                  "group": "top",
-                  "id": "49ef115c-33cd-4f6d-9c09-54de3184f986"
-                },
-                {
-                  "group": "right",
-                  "id": "bd91aaf9-c895-4cd5-bc78-e6f59de6576d"
-                },
-                {
-                  "group": "bottom",
-                  "id": "4b9e5923-74fd-4d6f-88c0-634fbb0672d8"
-                },
-                {
-                  "group": "left",
-                  "id": "87dab243-05d7-491b-93f2-76a17e886699"
-                }
-              ]
-            },
-            "id": "d4bd5287-bd82-4534-bda4-4ba33d7e1804",
-            "zIndex": 4,
-            "data": {
-              "type": "tm.Process",
-              "name": "Pipeline Trigger ",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false,
-              "isWebApplication": false,
-              "privilegeLevel": "",
-              "threats": [
-                {
-                  "id": "22ffaa59-6fe4-4b17-bc20-170ec06a94be",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Spoofing",
-                  "description": "Unauthorized entities may attempt to trigger pipeline execution.",
-                  "mitigation": "IAM policies restrict execution rights to trusted services only (Fargate and EventBridge).",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 6,
-                  "score": ""
-                }
-              ],
-              "threatFrequency": {
-                "spoofing": 1,
-                "tampering": 0,
-                "repudiation": 0,
-                "informationDisclosure": 0,
-                "denialOfService": 0,
-                "elevationOfPrivilege": 0
-              }
-            }
-          },
-          {
-            "position": {
               "x": 642,
               "y": 149
             },
@@ -952,7 +810,7 @@
             },
             "vertices": [
               {
-                "x": 330,
+                "x": 400,
                 "y": 289
               }
             ]
@@ -1023,6 +881,52 @@
               "y": 320
             },
             "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "6b5c2923-c7a5-49d1-81eb-718d41c8872e",
+            "source": {
+              "x": 490,
+              "y": 277
+            },
+            "target": {
+              "cell": "ab96b527-6751-44cf-9487-af648a7f6369",
+              "port": "87dab243-05d7-491b-93f2-76a17e886699"
+            }
           },
           {
             "position": {
@@ -2063,19 +1967,6 @@
                   "score": ""
                 },
                 {
-                  "id": "4e60c4c9-8002-4eb8-b521-34ea20421577",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Repudiation",
-                  "description": "Sensitive data may be exposed during transmission.",
-                  "mitigation": "All communication is secured using HTTPS encryption.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 24,
-                  "score": ""
-                },
-                {
                   "id": "6629eb8e-9cb1-4295-a5e2-dce2c5008171",
                   "title": "New STRIDE threat",
                   "status": "Open",
@@ -2105,7 +1996,7 @@
               "threatFrequency": {
                 "spoofing": 1,
                 "tampering": 1,
-                "repudiation": 1,
+                "repudiation": 0,
                 "informationDisclosure": 1,
                 "denialOfService": 1,
                 "elevationOfPrivilege": 0
