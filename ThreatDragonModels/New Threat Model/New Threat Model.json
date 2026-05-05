@@ -38,6 +38,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -121,7 +122,6 @@
               ]
             },
             "id": "e82e78fc-7d91-450d-be0f-98431da4f894",
-            "zIndex": 1,
             "data": {
               "type": "tm.Process",
               "name": "Front END ",
@@ -193,6 +193,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -276,7 +277,6 @@
               ]
             },
             "id": "20f8dc51-1411-491c-93dc-a3450160e310",
-            "zIndex": 2,
             "data": {
               "type": "tm.Actor",
               "name": "User ",
@@ -328,6 +328,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -459,8 +460,7 @@
                 "denialOfService": 2,
                 "elevationOfPrivilege": 0
               }
-            },
-            "zIndex": 3
+            }
           },
           {
             "position": {
@@ -483,6 +483,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 5,
             "ports": {
               "groups": {
                 "top": {
@@ -566,7 +567,6 @@
               ]
             },
             "id": "1704e26f-3c6e-4192-a570-ade1311ff657",
-            "zIndex": 5,
             "data": {
               "type": "tm.Process",
               "name": "Event Bridge ",
@@ -603,6 +603,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 6,
             "ports": {
               "groups": {
                 "top": {
@@ -686,7 +687,6 @@
               ]
             },
             "id": "7fa8eb26-e3a8-4f6f-aa0e-cadfd0dea089",
-            "zIndex": 6,
             "data": {
               "type": "tm.Process",
               "name": "Step function orchestration",
@@ -783,7 +783,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Data Flow",
+              "name": "User authenticates",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -797,7 +797,7 @@
               "trustBoundaryIds": []
             },
             "labels": [
-              "Data Flow"
+              "User authenticate"
             ],
             "id": "df7db9f5-2985-4b78-af22-42df31a5316c",
             "source": {
@@ -902,7 +902,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Data Flow",
+              "name": "Sends data ",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -916,17 +916,23 @@
               "trustBoundaryIds": []
             },
             "labels": [
-              "Data Flow"
+              "Sends data"
             ],
-            "id": "6b5c2923-c7a5-49d1-81eb-718d41c8872e",
+            "id": "369155b3-665c-4e31-ab8e-eb37468afa93",
             "source": {
-              "x": 490,
-              "y": 277
+              "x": 510,
+              "y": 280
             },
             "target": {
               "cell": "ab96b527-6751-44cf-9487-af648a7f6369",
               "port": "87dab243-05d7-491b-93f2-76a17e886699"
-            }
+            },
+            "vertices": [
+              {
+                "x": 560,
+                "y": 294
+              }
+            ]
           },
           {
             "position": {
@@ -949,6 +955,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 11,
             "ports": {
               "groups": {
                 "top": {
@@ -1032,7 +1039,6 @@
               ]
             },
             "id": "ee9ca249-011d-4068-9bb8-fe509f8ebfdf",
-            "zIndex": 11,
             "data": {
               "type": "tm.Process",
               "name": "Deterministic Processes ",
@@ -1091,6 +1097,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 12,
             "ports": {
               "groups": {
                 "top": {
@@ -1174,7 +1181,6 @@
               ]
             },
             "id": "83aef966-35eb-4063-9370-6284dd85afb0",
-            "zIndex": 12,
             "data": {
               "type": "tm.Process",
               "name": "AI Processing ",
@@ -1211,6 +1217,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 13,
             "ports": {
               "groups": {
                 "top": {
@@ -1294,7 +1301,6 @@
               ]
             },
             "id": "0e5b87e8-7df9-4ab7-be8c-9584ddb2c0f0",
-            "zIndex": 13,
             "data": {
               "type": "tm.Process",
               "name": "AI Access mangement ",
@@ -1392,6 +1398,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 14,
             "ports": {
               "groups": {
                 "top": {
@@ -1475,7 +1482,6 @@
               ]
             },
             "id": "ae68b9a9-9849-46c5-9a7c-8d21711e8d2a",
-            "zIndex": 14,
             "data": {
               "type": "tm.Process",
               "name": "External AI access",
@@ -1539,6 +1545,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 15,
             "ports": {
               "groups": {
                 "top": {
@@ -1622,7 +1629,6 @@
               ]
             },
             "id": "cc2e9b17-6533-416e-835b-d3578cec036c",
-            "zIndex": 15,
             "data": {
               "type": "tm.Store",
               "name": "Config and remediation  S3 ",
@@ -1722,6 +1728,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 16,
             "ports": {
               "groups": {
                 "top": {
@@ -1819,8 +1826,7 @@
               "storesCredentials": false,
               "storesInventory": false,
               "threats": []
-            },
-            "zIndex": 16
+            }
           },
           {
             "position": {
@@ -1843,6 +1849,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 17,
             "ports": {
               "groups": {
                 "top": {
@@ -1926,7 +1933,6 @@
               ]
             },
             "id": "d9ebb173-b84f-4770-9159-ae4dd456d467",
-            "zIndex": 17,
             "data": {
               "type": "tm.Process",
               "name": "External API ingestion",
