@@ -442,9 +442,9 @@
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "TBD",
-                  "type": "Repudiation",
+                  "type": "Denial of service",
                   "description": "A user may repeatedly trigger scan requests, overwhelm the system and increase operational costs.",
-                  "mitigation": "Rate limiting and per-user request quotas are implemented to prevent excessive usage. ",
+                  "mitigation": "Rate limiting and per-user request quotas are implemented to prevent excessive usage.  Implement through cloudwatch rules to identify throttling (DDos attacks). Auto scale tasks across instances to ensure availability when workload increases",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 4,
@@ -456,7 +456,7 @@
                 "tampering": 1,
                 "repudiation": 1,
                 "informationDisclosure": 1,
-                "denialOfService": 0,
+                "denialOfService": 2,
                 "elevationOfPrivilege": 0
               }
             },
@@ -854,12 +854,38 @@
                   "new": false,
                   "number": 7,
                   "score": ""
+                },
+                {
+                  "id": "b793ab0f-9fcd-495e-8559-75fcfecbed82",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Pipeline actions may not be fully traceable.",
+                  "mitigation": "CloudWatch logs and CloudTrail provide centralized, immutable logging of all executions.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                },
+                {
+                  "id": "14c726c9-0300-46a3-bfab-7ae12ca1cbf8",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "Failures in one stage may cascade through the pipeline.",
+                  "mitigation": "Step function orchestration enables retyr logic in the workflow as well as allows workflows to run separately in parallel distributing workflow so if one execution falis the others are not affected.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
-                "spoofing": 0,
+                "spoofing": 1,
                 "tampering": 1,
-                "repudiation": 0,
+                "repudiation": 1,
                 "informationDisclosure": 0,
                 "denialOfService": 0,
                 "elevationOfPrivilege": 0
@@ -917,6 +943,73 @@
                 "y": 289
               }
             ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "0b66275f-6c7d-4b21-b59e-f9acdfd24f5c",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Pipeline actions may not be fully traceable.",
+                  "mitigation": "CloudWatch logs and CloudTrail provide centralized, immutable logging of all executions. Monitor cludwatch events for failiures and health checks",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 2,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "0faaa008-c484-4b9d-86e6-ab09e519a1dc",
+            "source": {
+              "cell": "7fa8eb26-e3a8-4f6f-aa0e-cadfd0dea089",
+              "port": "4b9e5923-74fd-4d6f-88c0-634fbb0672d8"
+            },
+            "target": {
+              "x": 1010,
+              "y": 320
+            },
+            "vertices": []
           }
         ],
         "description": "New stride diagram"
@@ -924,6 +1017,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "Michael",
-    "threatTop": 7
+    "threatTop": 10
   }
 }
