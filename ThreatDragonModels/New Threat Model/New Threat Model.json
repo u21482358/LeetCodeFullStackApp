@@ -735,7 +735,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Pipeline FLow"
+                "text": "Step function orchestratio"
               },
               "body": {
                 "stroke": "red",
@@ -831,7 +831,7 @@
             "zIndex": 6,
             "data": {
               "type": "tm.Process",
-              "name": "Pipeline FLow ",
+              "name": "Step function orchestration",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -879,6 +879,19 @@
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 10,
+                  "score": ""
+                },
+                {
+                  "id": "4e20370a-274f-4bf8-a8ae-d8a09688f8a6",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": true,
+                  "number": 12,
                   "score": ""
                 }
               ],
@@ -1010,6 +1023,591 @@
               "y": 320
             },
             "vertices": []
+          },
+          {
+            "position": {
+              "x": 880,
+              "y": 400
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Deterministic Processes"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "49ef115c-33cd-4f6d-9c09-54de3184f986"
+                },
+                {
+                  "group": "right",
+                  "id": "bd91aaf9-c895-4cd5-bc78-e6f59de6576d"
+                },
+                {
+                  "group": "bottom",
+                  "id": "4b9e5923-74fd-4d6f-88c0-634fbb0672d8"
+                },
+                {
+                  "group": "left",
+                  "id": "87dab243-05d7-491b-93f2-76a17e886699"
+                }
+              ]
+            },
+            "id": "ee9ca249-011d-4068-9bb8-fe509f8ebfdf",
+            "zIndex": 11,
+            "data": {
+              "type": "tm.Process",
+              "name": "Deterministic Processes ",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "4560cae0-7b8a-4596-a34b-a668cf6a537d",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Over-permissioned Lambda functions may access restricted resources.",
+                  "mitigation": "Each Lambda function operates under least-privilege IAM roles with strict resource scoping.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 1060,
+              "y": 400
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "AI Processing"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "49ef115c-33cd-4f6d-9c09-54de3184f986"
+                },
+                {
+                  "group": "right",
+                  "id": "bd91aaf9-c895-4cd5-bc78-e6f59de6576d"
+                },
+                {
+                  "group": "bottom",
+                  "id": "4b9e5923-74fd-4d6f-88c0-634fbb0672d8"
+                },
+                {
+                  "group": "left",
+                  "id": "87dab243-05d7-491b-93f2-76a17e886699"
+                }
+              ]
+            },
+            "id": "83aef966-35eb-4063-9370-6284dd85afb0",
+            "zIndex": 12,
+            "data": {
+              "type": "tm.Process",
+              "name": "AI Processing ",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1130,
+              "y": 500
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "AI Access mangement"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "49ef115c-33cd-4f6d-9c09-54de3184f986"
+                },
+                {
+                  "group": "right",
+                  "id": "bd91aaf9-c895-4cd5-bc78-e6f59de6576d"
+                },
+                {
+                  "group": "bottom",
+                  "id": "4b9e5923-74fd-4d6f-88c0-634fbb0672d8"
+                },
+                {
+                  "group": "left",
+                  "id": "87dab243-05d7-491b-93f2-76a17e886699"
+                }
+              ]
+            },
+            "id": "0e5b87e8-7df9-4ab7-be8c-9584ddb2c0f0",
+            "zIndex": 13,
+            "data": {
+              "type": "tm.Process",
+              "name": "AI Access mangement ",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "5ebf3e00-2cf6-4640-ac20-0a0ae577ba03",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Malicious configuration input may manipulate LLM behaviour and outputs.",
+                  "mitigation": "Bedrock has built in guardrails to deny specific requests. System prompt can further give it context to deny specific requests. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                },
+                {
+                  "id": "4af453e5-a528-4581-bbfb-4bf586835f63",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Sensitive infrastructure data may be exposed to the LLM",
+                  "mitigation": "Nature of the issue. Outbound security group rules on Bedrock will be very restrictive to prevent data exfiltration. Tool use will be limited. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                },
+                {
+                  "id": "afeea37e-4e30-4492-9f45-704c0ee3d438",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "Large inputs may cause excessive token usage or service throttling.",
+                  "mitigation": "Input size limits and chunking mechanisms are enforced embedding models encodes data and stores it in Amazon OpenSearch for easy ingestion for the model. (semantic search to answer questions).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                },
+                {
+                  "id": "0f0247e4-b800-46a8-b9c1-0eeed053c26e",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": true,
+                  "number": 16,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 0
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 990,
+              "y": 500
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "External AI acces"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "49ef115c-33cd-4f6d-9c09-54de3184f986"
+                },
+                {
+                  "group": "right",
+                  "id": "bd91aaf9-c895-4cd5-bc78-e6f59de6576d"
+                },
+                {
+                  "group": "bottom",
+                  "id": "4b9e5923-74fd-4d6f-88c0-634fbb0672d8"
+                },
+                {
+                  "group": "left",
+                  "id": "87dab243-05d7-491b-93f2-76a17e886699"
+                }
+              ]
+            },
+            "id": "ae68b9a9-9849-46c5-9a7c-8d21711e8d2a",
+            "zIndex": 14,
+            "data": {
+              "type": "tm.Process",
+              "name": "External AI access",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "6c61798b-84f2-4d4e-9e8c-8dce46a1660f",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "The AI component may attempt to access sensitive credentials if compromised or manipulated.",
+                  "mitigation": "Lambda functions acts as a secure intermediary between AI components and Secrets Manager, enforcing strict access control and preventing direct secret retrieval.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
+            }
           }
         ],
         "description": "New stride diagram"
@@ -1017,6 +1615,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "Michael",
-    "threatTop": 10
+    "threatTop": 17
   }
 }
