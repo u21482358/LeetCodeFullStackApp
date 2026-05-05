@@ -309,7 +309,7 @@
           },
           {
             "position": {
-              "x": 662,
+              "x": 642,
               "y": 264
             },
             "size": {
@@ -464,7 +464,7 @@
           },
           {
             "position": {
-              "x": 923,
+              "x": 830,
               "y": 264
             },
             "size": {
@@ -472,9 +472,12 @@
               "height": 60
             },
             "attrs": {
+              "text": {
+                "text": "Pipeline Trigger"
+              },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -566,7 +569,149 @@
             "zIndex": 4,
             "data": {
               "type": "tm.Process",
-              "name": "Process",
+              "name": "Pipeline Trigger ",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "22ffaa59-6fe4-4b17-bc20-170ec06a94be",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Unauthorized entities may attempt to trigger pipeline execution.",
+                  "mitigation": "IAM policies restrict execution rights to trusted services only (Fargate and EventBridge).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 642,
+              "y": 149
+            },
+            "size": {
+              "width": 90,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Event Bridge"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "49ef115c-33cd-4f6d-9c09-54de3184f986"
+                },
+                {
+                  "group": "right",
+                  "id": "bd91aaf9-c895-4cd5-bc78-e6f59de6576d"
+                },
+                {
+                  "group": "bottom",
+                  "id": "4b9e5923-74fd-4d6f-88c0-634fbb0672d8"
+                },
+                {
+                  "group": "left",
+                  "id": "87dab243-05d7-491b-93f2-76a17e886699"
+                }
+              ]
+            },
+            "id": "1704e26f-3c6e-4192-a570-ade1311ff657",
+            "zIndex": 5,
+            "data": {
+              "type": "tm.Process",
+              "name": "Event Bridge ",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -578,6 +723,200 @@
               "privilegeLevel": "",
               "threats": []
             }
+          },
+          {
+            "position": {
+              "x": 980,
+              "y": 264
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Pipeline FLow"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "49ef115c-33cd-4f6d-9c09-54de3184f986"
+                },
+                {
+                  "group": "right",
+                  "id": "bd91aaf9-c895-4cd5-bc78-e6f59de6576d"
+                },
+                {
+                  "group": "bottom",
+                  "id": "4b9e5923-74fd-4d6f-88c0-634fbb0672d8"
+                },
+                {
+                  "group": "left",
+                  "id": "87dab243-05d7-491b-93f2-76a17e886699"
+                }
+              ]
+            },
+            "id": "7fa8eb26-e3a8-4f6f-aa0e-cadfd0dea089",
+            "zIndex": 6,
+            "data": {
+              "type": "tm.Process",
+              "name": "Pipeline FLow ",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "9f06cc3a-3c58-42f9-8850-0ebc2ae2a707",
+                  "title": "In progress",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Data may be modified between pipeline stages, affecting analysis accuracy.",
+                  "mitigation": "*",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "df7db9f5-2985-4b78-af22-42df31a5316c",
+            "source": {
+              "x": 283,
+              "y": 289
+            },
+            "target": {
+              "x": 440,
+              "y": 290
+            },
+            "vertices": [
+              {
+                "x": 330,
+                "y": 289
+              }
+            ]
           }
         ],
         "description": "New stride diagram"
@@ -585,6 +924,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "Michael",
-    "threatTop": 5
+    "threatTop": 7
   }
 }
