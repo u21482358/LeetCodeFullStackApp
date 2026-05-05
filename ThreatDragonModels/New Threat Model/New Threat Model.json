@@ -2008,6 +2008,58 @@
                 "elevationOfPrivilege": 0
               }
             }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 18,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "c4a3a4b5-75d1-4e51-836e-6d07935154f4",
+            "source": {
+              "x": 260,
+              "y": 510
+            },
+            "target": {
+              "x": 450,
+              "y": 430
+            },
+            "vertices": [
+              {
+                "x": 360,
+                "y": 450
+              }
+            ]
           }
         ],
         "description": "New stride diagram"
