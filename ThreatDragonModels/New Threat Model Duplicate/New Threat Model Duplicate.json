@@ -1,0 +1,27 @@
+{
+  "version": "2.6.1",
+  "summary": {
+    "title": "New Threat Model Duplicate",
+    "owner": "",
+    "description": "Duplicate threat model",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "New STRIDE diagram Duplicate",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.1",
+        "cells": [],
+        "description": " Duplicate"
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 0
+  }
+}
