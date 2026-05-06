@@ -1,0 +1,3289 @@
+{
+  "version": "2.6.1",
+  "summary": {
+    "title": "Config Drift and Attack Path Agent",
+    "owner": "Kivashin Naidoo",
+    "description": "A cloud platform that monitors configuration drift and analyzes configuration weaknesses using AI (Amazon Bedrock), maps attack paths and generates remediations.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "System Data Flow Diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.1",
+        "cells": [
+          {
+            "position": {
+              "x": -15.000000000000227,
+              "y": -329.99999999999983
+            },
+            "size": {
+              "width": 210,
+              "height": 140
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "id": "7ea25a9f-7887-4fb5-b0f5-c2da0d9a1e88",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB1: Corporate Network",
+              "description": "Where end users access the system from",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "8f3ff12a-3888-47da-b9b8-beb1100dfcba"
+              ],
+              "containedElements": [
+                "617f3037-9bb0-46e1-accb-25baae1554b5"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 406,
+              "y": -329.99999999999983
+            },
+            "size": {
+              "width": 420,
+              "height": 210
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "id": "9b5ddfd3-3037-4057-984c-d06f069a3e04",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB4: External APIs",
+              "description": "External systems outside AWS - Radware Cloud API, Active Directory, Corporate Proxy",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "a1b2c3d4-3333-4aaa-bbbb-000000000003"
+              ],
+              "containedElements": [
+                "f5495fc0-6407-454d-b97b-c09d12e88aca",
+                "234de11d-d98c-4940-99a7-1d412d8328f7"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": -15.000000000000227,
+              "y": -60.00000000000091
+            },
+            "size": {
+              "width": 1080,
+              "height": 370
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "id": "8b627292-5717-4a24-90db-4ac29c0043c5",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB2: VPC Private Subnets",
+              "description": "AWS VPC containing Fargate container, Lambdas, and Internal ALB",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "8f3ff12a-3888-47da-b9b8-beb1100dfcba",
+                "a1b2c3d4-3333-4aaa-bbbb-000000000003",
+                "a1b2c3d4-5555-4aaa-bbbb-000000000005",
+                "a1b2c3d4-6666-4aaa-bbbb-000000000006",
+                "a1b2c3d4-8888-4aaa-bbbb-000000000008",
+                "a1b2c3d4-9999-4aaa-bbbb-000000000009",
+                "a1b2c3d4-aaaa-4aaa-bbbb-000000000010",
+                "a1b2c3d4-bbbb-4aaa-bbbb-000000000011",
+                "a1b2c3d4-cccc-4aaa-bbbb-000000000012"
+              ],
+              "containedElements": [
+                "bad11303-dd65-4484-aaaf-c8239bae7603",
+                "2390d00c-8191-4e3b-9e27-0a5068e8631e",
+                "49b29dac-36be-42ec-b754-4c97e50bbca7",
+                "dd15c277-eb34-486e-a92d-5bb98d4501a5",
+                "f0ed9d00-bc6b-4a04-859e-96a5c2ed9fa3"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": -15.000000000002103,
+              "y": 340.0000000000041
+            },
+            "size": {
+              "width": 980,
+              "height": 330
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "id": "b07f62c3-51e8-4dc7-9bed-3b7cf445d13a",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "TB3: AWS Managed Services",
+              "description": "S3, DynamoDB, Bedrock, Parameter Store, Secrets Manager, KMS, ECR, EventBridge",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "a1b2c3d4-5555-4aaa-bbbb-000000000005",
+                "a1b2c3d4-6666-4aaa-bbbb-000000000006",
+                "a1b2c3d4-8888-4aaa-bbbb-000000000008",
+                "a1b2c3d4-9999-4aaa-bbbb-000000000009",
+                "a1b2c3d4-aaaa-4aaa-bbbb-000000000010",
+                "a1b2c3d4-bbbb-4aaa-bbbb-000000000011",
+                "a1b2c3d4-cccc-4aaa-bbbb-000000000012"
+              ],
+              "containedElements": [
+                "8982a988-76f7-4a1a-9217-991685800040",
+                "3b253494-c7eb-4f2e-bd76-189d2bd1598e",
+                "1866ad5c-359a-49db-a91f-6c67f5ef0ea5",
+                "c020ddf5-c95e-4995-a4ec-14f9ef6c48cc",
+                "359f90f5-7d05-4d02-a075-8a964fc1a191",
+                "150957b6-fa62-46ed-90b4-2ef3861a8a41",
+                "3fbe6c45-8739-4797-9741-88bd919781eb",
+                "c4cbd605-047c-40b6-9e50-5da99d527cd6"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 33.74999999999977,
+              "y": -289.99999999999983
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "User (Browser)"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "e23a6c69-ad14-4587-b4b1-2e4057038084"
+                },
+                {
+                  "group": "right",
+                  "id": "75f512ff-6948-446a-88b0-75575ad64256"
+                },
+                {
+                  "group": "bottom",
+                  "id": "d5960753-c23c-44d6-a56f-dd1996a3db87"
+                },
+                {
+                  "group": "left",
+                  "id": "122950fe-c5bd-44c3-a126-80484472da0e"
+                }
+              ]
+            },
+            "id": "617f3037-9bb0-46e1-accb-25baae1554b5",
+            "data": {
+              "type": "tm.Actor",
+              "name": "User (Browser)",
+              "description": "Corporate user who views reports and triggers scans via the web frontend",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 427.5,
+              "y": -310
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "External API"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "e23a6c69-ad14-4587-b4b1-2e4057038084"
+                },
+                {
+                  "group": "right",
+                  "id": "75f512ff-6948-446a-88b0-75575ad64256"
+                },
+                {
+                  "group": "bottom",
+                  "id": "d5960753-c23c-44d6-a56f-dd1996a3db87"
+                },
+                {
+                  "group": "left",
+                  "id": "122950fe-c5bd-44c3-a126-80484472da0e"
+                }
+              ]
+            },
+            "id": "f5495fc0-6407-454d-b97b-c09d12e88aca",
+            "data": {
+              "type": "tm.Actor",
+              "name": "External APIs",
+              "description": "External API data source for network/security configurations (https://api.radwarecloud.app/v1/gms/applications)",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 694.75,
+              "y": -310
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Corporate Proxy"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 3,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "e23a6c69-ad14-4587-b4b1-2e4057038084"
+                },
+                {
+                  "group": "right",
+                  "id": "75f512ff-6948-446a-88b0-75575ad64256"
+                },
+                {
+                  "group": "bottom",
+                  "id": "d5960753-c23c-44d6-a56f-dd1996a3db87"
+                },
+                {
+                  "group": "left",
+                  "id": "122950fe-c5bd-44c3-a126-80484472da0e"
+                }
+              ]
+            },
+            "id": "234de11d-d98c-4940-99a7-1d412d8328f7",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Corporate Proxy",
+              "description": "Outbound proxy (vsearray.intra.absaafrica:80) for external API access",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": -20
+            },
+            "size": {
+              "width": 80,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Fargate (API + UI)"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 4,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+                },
+                {
+                  "group": "right",
+                  "id": "f1041113-3eed-4d14-a970-712d74c28b9b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+                },
+                {
+                  "group": "left",
+                  "id": "b5250502-9491-4c6e-b998-ff442161159b"
+                }
+              ]
+            },
+            "id": "bad11303-dd65-4484-aaaf-c8239bae7603",
+            "data": {
+              "type": "tm.Process",
+              "name": "Fargate (API + UI)",
+              "description": "ECS Fargate container serving frontend UI and API endpoints (/api/scan, /api/reports, /api/reports/:id) behind Internal ALB",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": true,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "1",
+                  "title": "1.1 Session token theft / credential impersonation",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Attacker steals session token or credentials to impersonate legitimate user, gaining unauthorized access to security reports and attack paths.",
+                  "mitigation": "Corporate SSO (SAML/OIDC). Short-lived session tokens. HttpOnly/Secure cookies.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "2",
+                  "title": "1.2 API parameter manipulation",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "User manipulates API request parameters (source IDs, report IDs) via browser tools to trigger scans on unintended targets or access unauthorized reports.",
+                  "mitigation": "Input validation. Allowlist source IDs against Parameter Store. Request body schema validation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                },
+                {
+                  "id": "3",
+                  "title": "1.3 User denies triggering scan or downloading report",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "User triggers scan or downloads sensitive report, then denies it. No accountability for system misuse or data exfiltration.",
+                  "mitigation": "ALB access logs + CloudTrail + application audit log (user identity, action, timestamp).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "4",
+                  "title": "1.4 Reports/attack paths exposed to unauthorized users",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Reports containing weaknesses and attack paths exposed to unauthorized users via shared URLs, cached content, or over-broad access. Provides exploitation roadmap for attackers.",
+                  "mitigation": "Auth required on all endpoints. S3 pre-signed URLs with 5-min TTL. No-cache headers. Scoped access per team/source.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                },
+                {
+                  "id": "5",
+                  "title": "1.5 Scan spam floods pipeline",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "User spams POST /api/scan flooding pipeline executions causing resource exhaustion, cost spike, and Bedrock throttling.",
+                  "mitigation": "Rate limiting per user on Fargate API. Step Function concurrency limit. AWS budget alerts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                },
+                {
+                  "id": "6",
+                  "title": "1.6 Normal user accesses admin functions",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Normal user accesses admin functions (trigger scans, modify sources, delete reports) leading to unauthorized config changes, data loss, or unnecessary scan costs.",
+                  "mitigation": "RBAC enforced in Fargate app. Role claims from SSO token validated per endpoint. Least-privilege IAM on Fargate task role.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 335,
+              "y": -30
+            },
+            "size": {
+              "width": 130,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Step Functions"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 5,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+                },
+                {
+                  "group": "right",
+                  "id": "f1041113-3eed-4d14-a970-712d74c28b9b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+                },
+                {
+                  "group": "left",
+                  "id": "b5250502-9491-4c6e-b998-ff442161159b"
+                }
+              ]
+            },
+            "id": "2390d00c-8191-4e3b-9e27-0a5068e8631e",
+            "data": {
+              "type": "tm.Process",
+              "name": "Step Functions",
+              "description": "Orchestrates 8 Lambdas sequentially with Map state for parallel per-source execution and Choice state for drift detection branching",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "7",
+                  "title": "2.1 Unauthorized StartExecution call",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Spoofing",
+                  "description": "Unauthorized entity calls StartExecution on Step Function causing rogue pipeline executions, resource consumption, and cost.",
+                  "mitigation": "IAM restricts StartExecution to EventBridge role + Fargate task role only, scoped to specific State Machine ARN.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                },
+                {
+                  "id": "8",
+                  "title": "2.5 Cannot prove what Lambda/Bedrock did",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Lambda modifies/deletes data or Bedrock call produces incorrect results — cannot prove what happened. Cannot diagnose false negatives or root cause data changes.",
+                  "mitigation": "Structured JSON logging per Lambda (metadata only). CloudTrail data events. Step Function execution history (immutable). Log Bedrock request IDs + token counts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                },
+                {
+                  "id": "9",
+                  "title": "2.8 Lambda timeout / infinite retry / Bedrock throttling",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Lambda hangs on unresponsive service, infinite retry, or Bedrock throttling causing cost spike, pipeline stuck, resource exhaustion.",
+                  "mitigation": "Lambda timeout (hard cap). Step Function state timeout. Retry limits with backoff. Map state MaxConcurrency. CloudWatch alarms on duration/errors.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 686,
+              "y": -40
+            },
+            "size": {
+              "width": 130,
+              "height": 120
+            },
+            "attrs": {
+              "text": {
+                "text": "Ingestion Lambda"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 6,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+                },
+                {
+                  "group": "right",
+                  "id": "f1041113-3eed-4d14-a970-712d74c28b9b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+                },
+                {
+                  "group": "left",
+                  "id": "b5250502-9491-4c6e-b998-ff442161159b"
+                }
+              ]
+            },
+            "id": "49b29dac-36be-42ec-b754-4c97e50bbca7",
+            "data": {
+              "type": "tm.Process",
+              "name": "Ingestion Lambda",
+              "description": "Fetches configs from external sources (Radware, AD) via corporate proxy, stores raw config in S3",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "10",
+                  "title": "2.2 Lambda code modified to skip security checks",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "Lambda code modified to skip security checks or falsify reports (early return, altered logic). False sense of security, silent posture degradation.",
+                  "mitigation": "CI/CD with approval gates. Lambda CodeSigning. Lambda versioning. CloudTrail alerts on UpdateFunctionCode. Only CI/CD role can deploy.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                },
+                {
+                  "id": "11",
+                  "title": "4.2 MITM between Lambda and Radware API",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Man-in-the-middle between Lambda and Radware API via proxy. Modified config response leads to false analysis throughout pipeline.",
+                  "mitigation": "TLS end-to-end (HTTPS). Certificate validation (verify=True). Pin certificates if possible.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                },
+                {
+                  "id": "12",
+                  "title": "4.4 API keys visible in transit or proxy logs",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "API keys visible in transit or proxy logs leading to credential theft.",
+                  "mitigation": "HTTPS (proxy sees destination, not headers/body). Secrets fetched at runtime from Secrets Manager, never in env vars or code.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                },
+                {
+                  "id": "13",
+                  "title": "4.5 Corporate proxy outage blocks config ingestion",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Corporate proxy outage blocks all config ingestion. No configs fetched, no drift detection, monitoring gap.",
+                  "mitigation": "CloudWatch alarm on Ingest Lambda failures. Escalation runbook to network team.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                },
+                {
+                  "id": "14",
+                  "title": "4.6 Lambda gains broader corporate network access",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Lambda gains access to broader corporate network via VPN tunnel enabling lateral movement to internal systems.",
+                  "mitigation": "Security groups restrict Lambda ENIs to proxy IP:port only. No broad corporate CIDR access. Network ACLs as secondary control.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 130,
+              "y": 60
+            },
+            "size": {
+              "width": 240,
+              "height": 160
+            },
+            "attrs": {
+              "text": {
+                "text": "Hash and Diff Lambdas"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 7,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+                },
+                {
+                  "group": "right",
+                  "id": "f1041113-3eed-4d14-a970-712d74c28b9b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+                },
+                {
+                  "group": "left",
+                  "id": "b5250502-9491-4c6e-b998-ff442161159b"
+                }
+              ]
+            },
+            "id": "dd15c277-eb34-486e-a92d-5bb98d4501a5",
+            "data": {
+              "type": "tm.Process",
+              "name": "Hash and Diff Lambdas",
+              "description": "Computes config hashes for drift detection and generates diffs between current and previous configs",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "15",
+                  "title": "2.9 Lambda role over-permissioned",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Single Lambda role has excessive permissions across all S3 prefixes, DynamoDB tables, and Bedrock. One compromised Lambda = full system compromise.",
+                  "mitigation": "Separate IAM role per Lambda. Each scoped to specific S3 prefixes, DynamoDB actions, and Bedrock access. Principle of least privilege.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 492.5,
+              "y": 530
+            },
+            "size": {
+              "width": 130,
+              "height": 120
+            },
+            "attrs": {
+              "text": {
+                "text": "Bedrock Analysis"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 8,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+                },
+                {
+                  "group": "right",
+                  "id": "f1041113-3eed-4d14-a970-712d74c28b9b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+                },
+                {
+                  "group": "left",
+                  "id": "b5250502-9491-4c6e-b998-ff442161159b"
+                }
+              ]
+            },
+            "id": "8982a988-76f7-4a1a-9217-991685800040",
+            "data": {
+              "type": "tm.Process",
+              "name": "Bedrock Analysis",
+              "description": "Lambdas that call Amazon Bedrock (Claude Sonnet, temperature 0) for security check, attack paths, and remediation generation",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "16",
+                  "title": "2.3 [P1] Prompt injection via malicious config content",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "HIGHEST PRIORITY THREAT. Malicious content embedded in config manipulates Bedrock into reporting 'no issues found'. Attacker hides vulnerabilities from detection. Entire report is falsified.",
+                  "mitigation": "Separate data from instructions in prompt. Structured JSON output schema. Output validation (zero findings on 50k-line config = suspicious). Input sanitization. Bedrock Guardrails. Prompt delimiters (<CONFIG_START>...<CONFIG_END>).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                },
+                {
+                  "id": "17",
+                  "title": "2.4 Bedrock returns malformed/empty response",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Bedrock returns malformed/empty response, stored as-is. Misleading report, garbage data presented to users.",
+                  "mitigation": "Validate Bedrock response schema before storing. Reject empty/malformed responses. Step Function error handler on validation failure.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": ""
+                },
+                {
+                  "id": "18",
+                  "title": "2.6 Lambda logs contain sensitive config data",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Lambda logs or Step Function state contain sensitive config data (credentials, IPs). Credential exposure via CloudWatch Logs or execution history.",
+                  "mitigation": "Never log raw configs — log metadata only. Custom regex sanitization layer. CloudWatch Logs encrypted with KMS. Minimize sensitive data in Step Function state payloads.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": ""
+                },
+                {
+                  "id": "19",
+                  "title": "2.7 Sensitive config data sent to Bedrock",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Sensitive config data (credentials, internal IPs) sent to Bedrock. Data exposure, compliance failure, echoed in reports.",
+                  "mitigation": "Regex sanitization before every Bedrock call. Enterprise Bedrock (data stays in account). Bedrock invocation logs encrypted + restricted.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                }
+              ]
+            },
+            "children": [
+              "6cdf7008-b6f2-4744-a5cf-69a86071ddd2"
+            ]
+          },
+          {
+            "position": {
+              "x": 866,
+              "y": -40
+            },
+            "size": {
+              "width": 120,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Report Lambda"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 9,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+                },
+                {
+                  "group": "right",
+                  "id": "f1041113-3eed-4d14-a970-712d74c28b9b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+                },
+                {
+                  "group": "left",
+                  "id": "b5250502-9491-4c6e-b998-ff442161159b"
+                }
+              ]
+            },
+            "id": "f0ed9d00-bc6b-4a04-859e-96a5c2ed9fa3",
+            "data": {
+              "type": "tm.Process",
+              "name": "Report Lambda",
+              "description": "Compiles final security report from analysis outputs and stores in S3 reports/ prefix",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 240,
+              "y": 450
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "KMS"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 10,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+                },
+                {
+                  "group": "right",
+                  "id": "f1041113-3eed-4d14-a970-712d74c28b9b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+                },
+                {
+                  "group": "left",
+                  "id": "b5250502-9491-4c6e-b998-ff442161159b"
+                }
+              ]
+            },
+            "id": "3b253494-c7eb-4f2e-bd76-189d2bd1598e",
+            "data": {
+              "type": "tm.Process",
+              "name": "KMS",
+              "description": "AWS Key Management Service - CMK for SSE-KMS encryption of all data at rest (S3, DynamoDB, CloudWatch Logs)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "20",
+                  "title": "5.4 KMS key policy modified for broader access",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "KMS key policy modified to grant broader decryption access. Unauthorized decryption of all encrypted data.",
+                  "mitigation": "CloudTrail alerts on PutKeyPolicy/CreateGrant. Key policy changes require admin. IaC drift detection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                },
+                {
+                  "id": "21",
+                  "title": "5.6 [P7] KMS key scheduled for deletion",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "CATASTROPHIC: KMS key scheduled for deletion makes all encrypted data permanently inaccessible. Permanent data loss.",
+                  "mitigation": "7-30 day mandatory waiting period. CloudTrail alert on ScheduleKeyDeletion. Restrict to break-glass admin role only.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTPS: Scan/Report requests",
+              "description": "User sends scan requests and retrieves reports via HTTPS",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "7ea25a9f-7887-4fb5-b0f5-c2da0d9a1e88",
+                "8b627292-5717-4a24-90db-4ac29c0043c5"
+              ]
+            },
+            "labels": [
+              "HTTPS: Scan/Report requests"
+            ],
+            "id": "8f3ff12a-3888-47da-b9b8-beb1100dfcba",
+            "source": {
+              "cell": "617f3037-9bb0-46e1-accb-25baae1554b5",
+              "port": "d5960753-c23c-44d6-a56f-dd1996a3db87"
+            },
+            "target": {
+              "cell": "bad11303-dd65-4484-aaaf-c8239bae7603",
+              "port": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+            }
+          },
+          {
+            "position": {
+              "x": 355,
+              "y": 360
+            },
+            "size": {
+              "width": 90,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "EventBridge"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 11,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+                },
+                {
+                  "group": "right",
+                  "id": "f1041113-3eed-4d14-a970-712d74c28b9b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+                },
+                {
+                  "group": "left",
+                  "id": "b5250502-9491-4c6e-b998-ff442161159b"
+                }
+              ]
+            },
+            "id": "1866ad5c-359a-49db-a91f-6c67f5ef0ea5",
+            "data": {
+              "type": "tm.Process",
+              "name": "EventBridge",
+              "description": "Triggers scheduled scans via cron rule targeting Step Functions",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "22",
+                  "title": "5.1 [P9] EventBridge rule disabled — silent monitoring gap",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "EventBridge rule disabled/deleted so no scheduled scans run. Drift goes undetected indefinitely. Silent monitoring gap.",
+                  "mitigation": "CloudWatch alarm on 'zero executions in 24h'. CloudTrail alert on DeleteRule/DisableRule. IaC drift detection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 497.5,
+              "y": 360
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "S3"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 12,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "7dcfabcd-bdbc-45fe-b8b3-bb0ec85f51bf"
+                },
+                {
+                  "group": "right",
+                  "id": "2f230eeb-138d-43bd-8dea-6a55768aaaa5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "90f3e36e-85df-47bb-9b5e-df03f4e95ec9"
+                },
+                {
+                  "group": "left",
+                  "id": "de76d519-e535-4a1c-9407-743045f90cf3"
+                }
+              ]
+            },
+            "id": "c020ddf5-c95e-4995-a4ec-14f9ef6c48cc",
+            "data": {
+              "type": "tm.Store",
+              "name": "S3",
+              "description": "Single bucket with prefix separation: configs/, reports/, remediations/. SSE-KMS encrypted. VPC endpoint access only.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "23",
+                  "title": "3.1 Stolen credentials access S3",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Attacker accesses S3 with stolen credentials. Reads configs, reports, attack paths. Manipulates hashes.",
+                  "mitigation": "VPC Endpoint policy (non-VPC access denied). Bucket policy enforces aws:SourceVpc. No public access. IAM scoped per Lambda to specific prefixes.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": ""
+                },
+                {
+                  "id": "24",
+                  "title": "3.2 Config or report modified/deleted after storage",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Config or report modified/deleted after storage. Attacker hides evidence. Integrity of security analysis compromised.",
+                  "mitigation": "S3 Versioning. S3 Object Lock (compliance mode) for reports. MFA Delete. CloudTrail S3 data events.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": ""
+                },
+                {
+                  "id": "25",
+                  "title": "3.5 [P4] Raw configs or attack path reports leaked",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Raw configs or attack path reports leaked. Attacker gains infrastructure knowledge + exploitation roadmap.",
+                  "mitigation": "SSE-KMS encryption (CMK). Block Public Access. Pre-signed URLs with short TTL. VPC-only access via endpoint policy. Per-Lambda prefix scoping.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": ""
+                },
+                {
+                  "id": "26",
+                  "title": "3.6 S3 flooded or DynamoDB throttled",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "S3 flooded with large objects causing financial impact, pipeline blocked, frontend can't list reports.",
+                  "mitigation": "S3 Lifecycle policies. DynamoDB on-demand capacity. Budget alerts. Lambda write size validation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 190,
+              "y": 360
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "DynamoDB"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 13,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "7dcfabcd-bdbc-45fe-b8b3-bb0ec85f51bf"
+                },
+                {
+                  "group": "right",
+                  "id": "2f230eeb-138d-43bd-8dea-6a55768aaaa5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "90f3e36e-85df-47bb-9b5e-df03f4e95ec9"
+                },
+                {
+                  "group": "left",
+                  "id": "de76d519-e535-4a1c-9407-743045f90cf3"
+                }
+              ]
+            },
+            "id": "359f90f5-7d05-4d02-a075-8a964fc1a191",
+            "data": {
+              "type": "tm.Store",
+              "name": "DynamoDB",
+              "description": "Stores config hashes (drift detection), S3 key references, and report metadata",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "27",
+                  "title": "3.3 [P2] Hash tampering bypasses drift detection",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "CRITICAL: Stored hash modified to match compromised config. Drift detection silently bypassed. Attacker changes config AND hash, system reports 'no drift'.",
+                  "mitigation": "Only Hash Lambda role has PutItem on hash table. DynamoDB Streams for change audit. CloudTrail data events. Alert on unexpected hash changes.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": ""
+                },
+                {
+                  "id": "28",
+                  "title": "3.4 DynamoDB records modified with no trace",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "S3 objects or DynamoDB records modified/deleted with no trace. Cannot attribute data changes.",
+                  "mitigation": "S3 access logging + CloudTrail data events. DynamoDB Streams → archive to S3 (immutable). Point-in-time recovery. MFA Delete.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": ""
+                },
+                {
+                  "id": "29",
+                  "title": "3.7 Cross-prefix/table access via IAM misconfiguration",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Lambda with configs/* write also writes to reports/*. Fargate writes hashes (should only read metadata). Data integrity violation.",
+                  "mitigation": "IAM per Lambda scoped to specific prefixes. Separate DynamoDB tables or fine-grained access.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 647.5,
+              "y": 360
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Secrets Manager"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 14,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "7dcfabcd-bdbc-45fe-b8b3-bb0ec85f51bf"
+                },
+                {
+                  "group": "right",
+                  "id": "2f230eeb-138d-43bd-8dea-6a55768aaaa5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "90f3e36e-85df-47bb-9b5e-df03f4e95ec9"
+                },
+                {
+                  "group": "left",
+                  "id": "de76d519-e535-4a1c-9407-743045f90cf3"
+                }
+              ]
+            },
+            "id": "150957b6-fa62-46ed-90b4-2ef3861a8a41",
+            "data": {
+              "type": "tm.Store",
+              "name": "Secrets Manager",
+              "description": "Stores API credentials (x-api-key, Context headers) for Radware and other external sources",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": true,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "30",
+                  "title": "5.3 [P6] Secret value tampered — redirects to attacker API",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Secret value modified to redirect auth to attacker's API. Poisoned config ingestion via attacker-controlled endpoint.",
+                  "mitigation": "Restrict PutSecretValue to admin roles (Lambdas read-only). CloudTrail alerts on secret changes. Secrets versioning for rollback.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": ""
+                },
+                {
+                  "id": "31",
+                  "title": "5.5 Secrets exposed in Lambda env vars or logs",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Secrets exposed in Lambda env vars, logs, or error messages. Credential theft, external system compromise.",
+                  "mitigation": "Secrets fetched at runtime via SDK (never env vars). Sanitization prevents logging. Error messages redact secrets.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": ""
+                },
+                {
+                  "id": "32",
+                  "title": "5.7 Secret rotation fails — pipeline breaks silently",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Secret rotation fails or parameters deleted causing pipeline to break silently. Ingestion fails, no new scans, monitoring gap.",
+                  "mitigation": "CloudWatch alarms on rotation failures, auth errors, zero sources returned. IaC backs up parameter values.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 20,
+              "y": 360
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "ECR"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 15,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "7dcfabcd-bdbc-45fe-b8b3-bb0ec85f51bf"
+                },
+                {
+                  "group": "right",
+                  "id": "2f230eeb-138d-43bd-8dea-6a55768aaaa5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "90f3e36e-85df-47bb-9b5e-df03f4e95ec9"
+                },
+                {
+                  "group": "left",
+                  "id": "de76d519-e535-4a1c-9407-743045f90cf3"
+                }
+              ]
+            },
+            "id": "3fbe6c45-8739-4797-9741-88bd919781eb",
+            "data": {
+              "type": "tm.Store",
+              "name": "ECR",
+              "description": "Elastic Container Registry storing Fargate container images",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "33",
+                  "title": "6.1 [P5] Malicious container image pushed",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Attacker pushes malicious container image tagged as legitimate, or impersonates CI/CD to deploy code. Backdoor in Lambda or Fargate container — full application compromise.",
+                  "mitigation": "ECR immutable tags. Image signing (AWS Signer). IAM restricts ecr:PutImage + Lambda deploy to CI/CD role only. CI/CD authenticates via OIDC (no long-lived creds).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": ""
+                },
+                {
+                  "id": "34",
+                  "title": "6.2 Malicious dependency via supply chain",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Malicious dependency injected via supply chain (pip, npm). Backdoor in Lambda layer or container — data exfiltration, credential theft.",
+                  "mitigation": "Dependency pinning with hashes. Dependency scanning (Dependabot/Snyk). ECR image scan on push. Private PyPI mirror if available.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 34,
+                  "score": ""
+                },
+                {
+                  "id": "35",
+                  "title": "6.5 Container image contains hardcoded secrets",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Container image contains hardcoded secrets or CI/CD logs expose credentials.",
+                  "mitigation": "No secrets in Dockerfile. Use Secrets Manager at runtime. CI/CD secret masking. Build logs access-restricted.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 35,
+                  "score": ""
+                },
+                {
+                  "id": "36",
+                  "title": "6.6 ECR images deleted — cannot deploy or scale",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "ECR images deleted or CI/CD unavailable. Application unavailable, cannot respond to incidents.",
+                  "mitigation": "ECR lifecycle retains last N images. IAM restricts image deletion to admin. Multiple deployment paths (manual fallback).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 36,
+                  "score": ""
+                },
+                {
+                  "id": "37",
+                  "title": "6.7 CI/CD deployment role overly broad",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "CI/CD deployment role or Fargate execution role has overly broad permissions. Compromised pipeline/container can modify IAM, delete resources, access all data.",
+                  "mitigation": "Deployment role scoped to Lambda update + ECR push + ECS deploy only. Fargate execution role: ECR pull only. Permission boundaries.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 37,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 800,
+              "y": 360
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Parameter Store"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 16,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "7dcfabcd-bdbc-45fe-b8b3-bb0ec85f51bf"
+                },
+                {
+                  "group": "right",
+                  "id": "2f230eeb-138d-43bd-8dea-6a55768aaaa5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "90f3e36e-85df-47bb-9b5e-df03f4e95ec9"
+                },
+                {
+                  "group": "left",
+                  "id": "de76d519-e535-4a1c-9407-743045f90cf3"
+                }
+              ]
+            },
+            "id": "c4cbd605-047c-40b6-9e50-5da99d527cd6",
+            "data": {
+              "type": "tm.Store",
+              "name": "Parameter Store",
+              "description": "Stores source endpoint URLs and configuration for which systems to monitor",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "38",
+                  "title": "5.2 [P3] Parameter Store poisoned — malicious source URL",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Parameter Store poisoned — malicious source URL added or existing one modified. Ingest Lambda fetches from attacker-controlled endpoint. Poisoned config enters entire pipeline.",
+                  "mitigation": "IAM restricts ssm:PutParameter to admin only (no Lambda writes). CloudTrail alerts on changes. Domain whitelist validation in Get Sources Lambda. IaC drift detection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 38,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 17,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "StartExecution (source list)",
+              "description": "Fargate triggers Step Functions pipeline with list of sources to process",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "AWS SDK",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "StartExecution"
+            ],
+            "id": "a1b2c3d4-1111-4aaa-bbbb-000000000001",
+            "source": {
+              "cell": "bad11303-dd65-4484-aaaf-c8239bae7603",
+              "port": "f1041113-3eed-4d14-a970-712d74c28b9b"
+            },
+            "target": {
+              "cell": "2390d00c-8191-4e3b-9e27-0a5068e8631e",
+              "port": "b5250502-9491-4c6e-b998-ff442161159b"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 18,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Invoke: Ingest config",
+              "description": "Step Functions invokes Ingestion Lambda for each source",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "AWS SDK",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Invoke Lambda"
+            ],
+            "id": "a1b2c3d4-2222-4aaa-bbbb-000000000002",
+            "source": {
+              "cell": "2390d00c-8191-4e3b-9e27-0a5068e8631e",
+              "port": "f1041113-3eed-4d14-a970-712d74c28b9b"
+            },
+            "target": {
+              "cell": "49b29dac-36be-42ec-b754-4c97e50bbca7",
+              "port": "b5250502-9491-4c6e-b998-ff442161159b"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 19,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTPS: GET config via proxy",
+              "description": "Ingestion Lambda fetches raw config from Radware API through corporate proxy. ~50k line JSON response.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "39",
+                  "title": "4.1 Rogue resource impersonates legitimate traffic",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Spoofing",
+                  "description": "Rogue resource impersonates legitimate traffic to corporate proxy for unauthorized external API access.",
+                  "mitigation": "Security groups restrict outbound to proxy IP:port only. VPC Flow Logs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 39,
+                  "score": ""
+                },
+                {
+                  "id": "40",
+                  "title": "4.3 Cannot identify which Lambda made external call",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Cannot identify which Lambda made which external call. No attribution for external API interactions.",
+                  "mitigation": "VPC Flow Logs + structured Lambda logging (source, endpoint, timestamp, request ID).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 40,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [
+                "9b5ddfd3-3037-4057-984c-d06f069a3e04",
+                "8b627292-5717-4a24-90db-4ac29c0043c5"
+              ]
+            },
+            "labels": [
+              "HTTPS via proxy"
+            ],
+            "id": "a1b2c3d4-3333-4aaa-bbbb-000000000003",
+            "source": {
+              "cell": "49b29dac-36be-42ec-b754-4c97e50bbca7",
+              "port": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+            },
+            "target": {
+              "cell": "234de11d-d98c-4940-99a7-1d412d8328f7",
+              "port": "d5960753-c23c-44d6-a56f-dd1996a3db87"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 20,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTPS: API call ",
+              "description": "Corporate proxy forwards request to Radware Cloud API with x-api-key + Context headers",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "HTTPS: API call"
+            ],
+            "id": "a1b2c3d4-4444-4aaa-bbbb-000000000004",
+            "source": {
+              "cell": "234de11d-d98c-4940-99a7-1d412d8328f7",
+              "port": "122950fe-c5bd-44c3-a126-80484472da0e"
+            },
+            "target": {
+              "cell": "f5495fc0-6407-454d-b97b-c09d12e88aca",
+              "port": "75f512ff-6948-446a-88b0-75575ad64256"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 21,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "PutObject: raw config",
+              "description": "Ingestion Lambda stores raw config JSON to S3 configs/ prefix",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "AWS SDK (VPC Endpoint)",
+              "threats": [],
+              "trustBoundaryIds": [
+                "8b627292-5717-4a24-90db-4ac29c0043c5",
+                "b07f62c3-51e8-4dc7-9bed-3b7cf445d13a"
+              ]
+            },
+            "labels": [
+              "PutObject: configs/"
+            ],
+            "id": "a1b2c3d4-5555-4aaa-bbbb-000000000005",
+            "source": {
+              "cell": "49b29dac-36be-42ec-b754-4c97e50bbca7",
+              "port": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+            },
+            "target": {
+              "cell": "c020ddf5-c95e-4995-a4ec-14f9ef6c48cc",
+              "port": "7dcfabcd-bdbc-45fe-b8b3-bb0ec85f51bf"
+            },
+            "vertices": [
+              {
+                "x": 550,
+                "y": 200
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 22,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "GetItem/PutItem: config hash",
+              "description": "Hash Lambda reads previous hash and writes new hash for drift comparison",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "AWS SDK (VPC Endpoint)",
+              "threats": [],
+              "trustBoundaryIds": [
+                "8b627292-5717-4a24-90db-4ac29c0043c5",
+                "b07f62c3-51e8-4dc7-9bed-3b7cf445d13a"
+              ]
+            },
+            "labels": [
+              "Get/PutItem: hash"
+            ],
+            "id": "a1b2c3d4-6666-4aaa-bbbb-000000000006",
+            "source": {
+              "cell": "dd15c277-eb34-486e-a92d-5bb98d4501a5",
+              "port": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+            },
+            "target": {
+              "cell": "359f90f5-7d05-4d02-a075-8a964fc1a191",
+              "port": "7dcfabcd-bdbc-45fe-b8b3-bb0ec85f51bf"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 23,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "PutObject: reports/",
+              "description": "Bedrock Analysis and Report Lambda write analysis results and compiled reports to S3",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "AWS SDK (VPC Endpoint)",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "PutObject: reports/"
+            ],
+            "id": "a1b2c3d4-7777-4aaa-bbbb-000000000007",
+            "source": {
+              "cell": "8982a988-76f7-4a1a-9217-991685800040",
+              "port": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+            },
+            "target": {
+              "cell": "c020ddf5-c95e-4995-a4ec-14f9ef6c48cc",
+              "port": "90f3e36e-85df-47bb-9b5e-df03f4e95ec9"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 24,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "GetSecretValue: API credentials",
+              "description": "Ingestion Lambda fetches API credentials at runtime before calling external APIs",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "AWS SDK (VPC Endpoint)",
+              "threats": [],
+              "trustBoundaryIds": [
+                "8b627292-5717-4a24-90db-4ac29c0043c5",
+                "b07f62c3-51e8-4dc7-9bed-3b7cf445d13a"
+              ]
+            },
+            "labels": [
+              "GetSecretValue"
+            ],
+            "id": "a1b2c3d4-8888-4aaa-bbbb-000000000008",
+            "source": {
+              "cell": "49b29dac-36be-42ec-b754-4c97e50bbca7",
+              "port": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+            },
+            "target": {
+              "cell": "150957b6-fa62-46ed-90b4-2ef3861a8a41",
+              "port": "7dcfabcd-bdbc-45fe-b8b3-bb0ec85f51bf"
+            },
+            "vertices": [
+              {
+                "x": 660,
+                "y": 270
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 25,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "GetParameter: source URLs",
+              "description": "Ingestion Lambda reads source endpoint URLs to know which systems to fetch configs from",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "AWS SDK (VPC Endpoint)",
+              "threats": [],
+              "trustBoundaryIds": [
+                "8b627292-5717-4a24-90db-4ac29c0043c5",
+                "b07f62c3-51e8-4dc7-9bed-3b7cf445d13a"
+              ]
+            },
+            "labels": [
+              "GetParameter"
+            ],
+            "id": "a1b2c3d4-9999-4aaa-bbbb-000000000009",
+            "source": {
+              "cell": "49b29dac-36be-42ec-b754-4c97e50bbca7",
+              "port": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+            },
+            "target": {
+              "cell": "c4cbd605-047c-40b6-9e50-5da99d527cd6",
+              "port": "7dcfabcd-bdbc-45fe-b8b3-bb0ec85f51bf"
+            },
+            "vertices": [
+              {
+                "x": 790,
+                "y": 310
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 26,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Scheduled trigger (cron)",
+              "description": "EventBridge cron rule triggers Step Functions StartExecution on schedule",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "AWS EventBridge",
+              "threats": [],
+              "trustBoundaryIds": [
+                "8b627292-5717-4a24-90db-4ac29c0043c5",
+                "b07f62c3-51e8-4dc7-9bed-3b7cf445d13a"
+              ]
+            },
+            "labels": [
+              "Cron trigger"
+            ],
+            "id": "a1b2c3d4-aaaa-4aaa-bbbb-000000000010",
+            "source": {
+              "cell": "1866ad5c-359a-49db-a91f-6c67f5ef0ea5",
+              "port": "0e315e62-6f79-4d23-ab89-b8477b0e3a93"
+            },
+            "target": {
+              "cell": "2390d00c-8191-4e3b-9e27-0a5068e8631e",
+              "port": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 27,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Pull: container image",
+              "description": "Fargate pulls container image from ECR at startup/deployment",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS (ECR API)",
+              "threats": [],
+              "trustBoundaryIds": [
+                "8b627292-5717-4a24-90db-4ac29c0043c5",
+                "b07f62c3-51e8-4dc7-9bed-3b7cf445d13a"
+              ]
+            },
+            "labels": [
+              "Pull image"
+            ],
+            "id": "a1b2c3d4-bbbb-4aaa-bbbb-000000000011",
+            "source": {
+              "cell": "3fbe6c45-8739-4797-9741-88bd919781eb",
+              "port": "7dcfabcd-bdbc-45fe-b8b3-bb0ec85f51bf"
+            },
+            "target": {
+              "cell": "bad11303-dd65-4484-aaaf-c8239bae7603",
+              "port": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+            },
+            "vertices": [
+              {
+                "x": 50,
+                "y": 180
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 28,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "GetObject: pre-signed URL for reports",
+              "description": "Fargate reads report metadata from DynamoDB and generates pre-signed S3 URLs for the frontend",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "AWS SDK (VPC Endpoint)",
+              "threats": [],
+              "trustBoundaryIds": [
+                "8b627292-5717-4a24-90db-4ac29c0043c5",
+                "b07f62c3-51e8-4dc7-9bed-3b7cf445d13a"
+              ]
+            },
+            "labels": [
+              "Read report metadata"
+            ],
+            "id": "a1b2c3d4-cccc-4aaa-bbbb-000000000012",
+            "source": {
+              "cell": "bad11303-dd65-4484-aaaf-c8239bae7603",
+              "port": "32ab4a4c-8ea0-4564-a9a2-d293372b0f2c"
+            },
+            "target": {
+              "cell": "359f90f5-7d05-4d02-a075-8a964fc1a191",
+              "port": "de76d519-e535-4a1c-9407-743045f90cf3"
+            },
+            "vertices": [
+              {
+                "x": 140,
+                "y": 100
+              },
+              {
+                "x": 170,
+                "y": 220
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 40
+  }
+}
